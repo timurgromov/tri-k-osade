@@ -11,3 +11,5 @@
 - StarNinjas, [Crowd Shouting/Speaking Ambience](https://opengameart.org/content/crowd-shoutingspeaking-ambience).
 
 Фоновая музыка — RandomMind, [Medieval: The Bard’s Tale](https://opengameart.org/content/medieval-the-bards-tale), CC0.
+
+Реплики войск — HaelDB, [Male Grunt/Yelling sounds](https://opengameart.org/content/male-gruntyelling-sounds), CC0.

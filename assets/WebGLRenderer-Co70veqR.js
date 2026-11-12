@@ -1,1 +1,0 @@
-export{r as WebGLRenderer}from"./pixi-battle-yaWaQP25.js";

@@ -1,0 +1,1 @@
+export{r as WebGLRenderer}from"./pixi-battle-DV6C3tKA.js";

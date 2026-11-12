@@ -1,4 +1,4 @@
-# Три к осаде
+# Зов знамен
 
 Три миссии браузерной головоломки. [Играть](https://timurgromov.github.io/tri-k-osade/).
 
@@ -9,3 +9,5 @@
 - Graciano Choc, [Trumpet Fanfare](https://opengameart.org/content/trumpet-fanfare).
 - Nocturnal_Vanguard, [Cheers](https://opengameart.org/content/cheers-0).
 - StarNinjas, [Crowd Shouting/Speaking Ambience](https://opengameart.org/content/crowd-shoutingspeaking-ambience).
+
+Фоновая музыка — RandomMind, [Medieval: The Bard’s Tale](https://opengameart.org/content/medieval-the-bards-tale), CC0.

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#24341e" />
+  <link rel="icon" href="data:," />
+  <title>Три к осаде</title>
+  <script type="module" crossorigin src="./assets/index-Drga7ZY-.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/CanvasPool-CqH4kvmy.js">
+  <link rel="modulepreload" crossorigin href="./assets/Filter-13WHI54O.js">
+  <link rel="modulepreload" crossorigin href="./assets/canvasUtils-BkRxOBiV.js">
+  <link rel="modulepreload" crossorigin href="./assets/Cache-COMxh4dk.js">
+  <link rel="modulepreload" crossorigin href="./assets/init-Doe1byDY.js">
+  <link rel="modulepreload" crossorigin href="./assets/GCManagedHash-Du6hnMLn.js">
+  <link rel="modulepreload" crossorigin href="./assets/RenderTargetSystem-BCIcmu0g.js">
+  <link rel="modulepreload" crossorigin href="./assets/getTextureBatchBindGroup-D3ibVlli.js">
+  <link rel="modulepreload" crossorigin href="./assets/GraphicsContext-Ck5BnwfX.js">
+  <link rel="modulepreload" crossorigin href="./assets/CanvasRenderer-CuuwKLZo.js">
+  <link rel="stylesheet" crossorigin href="./assets/index-0GKMfWjS.css">
+</head>
+<body>
+  <main class="siege">
+    <div class="world">
+      <div id="scene" class="scene" aria-hidden="true"></div>
+      <div class="lookout">
+        <header class="masthead">
+          <div>
+            <h1>Три к осаде</h1>
+            <p id="mission" class="mission"></p>
+          </div>
+          <button type="button" id="sound" class="wood-button" aria-pressed="true">Звук</button>
+        </header>
+        <div class="fortress-status">
+          <span id="fortress-label" class="sr-only">Прочность крепости</span>
+          <div id="health" class="health" role="progressbar" aria-labelledby="fortress-label" aria-valuemin="0"></div>
+        </div>
+      </div>
+      <section class="muster" aria-label="Сбор отрядов">
+        <div class="orders" id="orders" aria-label="Отряды к бою"></div>
+        <div class="queue">
+          <div class="next" id="next"></div>
+          <span id="sent" aria-label="Отряды отправлены"></span>
+        </div>
+        <div class="field" id="field" aria-label="Места сбора"></div>
+      </section>
+      <section id="victory" class="victory" aria-labelledby="victory-title" hidden>
+        <div class="victory-card">
+          <img class="victory-art" src="./assets/plaque-CEdwx57v.webp" width="832" height="1040" alt="" />
+          <div class="victory-copy">
+            <h2 id="victory-title"></h2>
+            <span id="result"></span>
+            <button type="button" id="advance" class="wood-button"></button>
+          </div>
+        </div>
+        <div id="victory-ribbons" class="victory-ribbons" aria-hidden="true"></div>
+      </section>
+    </div>
+    <footer class="command">
+      <p id="feedback" class="feedback" role="status"></p>
+      <div class="controls">
+        <button type="button" id="undo" class="wood-button">↶ Отменить</button>
+        <button type="button" id="restart" class="wood-button">Начать заново</button>
+        <span id="moves">Переносы 0</span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

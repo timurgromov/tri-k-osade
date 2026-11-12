@@ -1,1 +1,0 @@
-import"./pixi-battle-Cz9QWEDi.js";import"./init-Cu1dhzhQ.js";

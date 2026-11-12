@@ -7,11 +7,11 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/camp-C6cDyv43.webp" fetchpriority="high" />
   <title>Зов знамен</title>
-  <script type="module" crossorigin src="./assets/index-DF4c5BIN.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CUq0epqx.css">
+  <script type="module" crossorigin src="./assets/index-D7XeLsci.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Bw8q7AH-.css">
 </head>
 <body>
-  <main class="siege">
+  <main class="siege" data-faction="humans">
     <div id="play-area" inert>
     <div class="world">
       <div id="fortress" class="gate-scene" aria-hidden="true"><img id="gate" class="gate" src="./assets/gate-0-CjqP4620.webp" alt="" /></div>
@@ -47,7 +47,7 @@
           <div class="victory-copy">
             <h2 id="victory-title"></h2>
             <span id="result"></span>
-            <button type="button" id="advance" class="wood-button"></button>
+            <button type="button" id="advance" class="faction-button victory-button"></button>
           </div>
         </div>
         <div id="victory-ribbons" class="victory-ribbons" aria-hidden="true"></div>
@@ -56,8 +56,8 @@
     <footer class="command">
       <p id="feedback" class="feedback" role="status">Перенесите крайнего воина на пустое место или к такому же.</p>
       <div class="controls">
-        <button type="button" id="undo" class="wood-button">↶ Отменить</button>
-        <button type="button" id="restart" class="wood-button">Начать заново</button>
+        <button type="button" id="undo" class="faction-button command-button">Отменить</button>
+        <button type="button" id="restart" class="faction-button command-button">Начать заново</button>
         <span id="moves">Переносы 0</span>
       </div>
     </footer>

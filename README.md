@@ -27,6 +27,6 @@
 - **Конница.** [Horse Snort — bruno.auzet](https://freesound.org/people/bruno.auzet/sounds/538697/), [Horse Galloping — Max_Headroom](https://freesound.org/people/Max_Headroom/sounds/175356/).
 - **Сталь.** [Sword Draw — SamsterBirdies](https://freesound.org/people/SamsterBirdies/sounds/581594/), [Sword Hit — xkeril](https://freesound.org/people/xkeril/sounds/815763/).
 - **Рама, сбруя, ворота и обвал.** [Wood Creak — Rudmer_Rotteveel](https://freesound.org/people/Rudmer_Rotteveel/sounds/502511/), [Wood Door Close — MadMaxSFX](https://freesound.org/people/MadMaxSFX/sounds/352329/), [Rocks Stones Impacts — Nox_Sound](https://freesound.org/people/Nox_Sound/sounds/567701/).
-- **Победа.** [Trumpet Fanfare — Graciano Choc](https://opengameart.org/content/trumpet-fanfare). Подрезано начало, сделана моно-версия, выровнен уровень. Иллюстрация опущенных труб нарисована в ImageGen на основе существующей рамки.
+- **Победа.** [Trumpet Fanfare — Graciano Choc](https://opengameart.org/content/trumpet-fanfare). Подрезано начало, сделана моно-версия, выровнен уровень. Фон и прозрачные слои трубачей нарисованы во встроенном ImageGen на основе существующей рамки.
 
 [Источники прежнего сведения и страницы сравнения](https://github.com/timurgromov/tri-k-osade/blob/b772858401466ed70bd9610d0b79fa8d70754b0f/README.md#музыка-и-звуковые-эффекты).

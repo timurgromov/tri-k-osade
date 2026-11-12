@@ -7,8 +7,8 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/camp-C6cDyv43.webp" fetchpriority="high" />
   <title>Зов знамен</title>
-  <script type="module" crossorigin src="./assets/index-DlUhRYvK.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-B6qAc-WJ.css">
+  <script type="module" crossorigin src="./assets/index-Df62S1ci.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Cr4EiLFM.css">
 </head>
 <body>
   <main class="siege" data-faction="humans">
@@ -21,9 +21,12 @@
           <p id="mission" class="mission">1. Лесные ворота</p>
           <button type="button" id="sound" class="sound-toggle" aria-label="Звук" aria-pressed="false" title="Включить звук"><span class="speaker" aria-hidden="true"></span></button>
         </header>
-        <div class="fortress-status">
-          <span id="fortress-label">Крепость</span><span id="fortress-points" aria-hidden="true">4 / 4</span>
-          <div id="health" class="health" role="progressbar" aria-labelledby="fortress-label" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4"><i class="intact"></i><i class="intact"></i><i class="intact"></i><i class="intact"></i></div>
+        <div class="lookout-status">
+          <div class="fortress-status">
+            <span id="fortress-label">Крепость</span><span id="fortress-points" aria-hidden="true">4 / 4</span>
+            <div id="health" class="health" role="progressbar" aria-labelledby="fortress-label" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4"><i class="intact"></i><i class="intact"></i><i class="intact"></i><i class="intact"></i></div>
+          </div>
+          <p id="feedback" class="feedback sr-only" role="status"></p>
         </div>
       </div>
       <section class="muster" aria-label="Сбор отрядов">
@@ -54,7 +57,6 @@
       </section>
     </div>
     <footer class="command">
-      <p id="feedback" class="feedback sr-only" role="status"></p>
       <div class="controls">
         <button type="button" id="undo" class="faction-button command-button">Отменить</button>
         <button type="button" id="restart" class="faction-button command-button">Начать заново</button>

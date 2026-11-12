@@ -1,0 +1,1 @@
+export{t as BitmapFont}from"./pixi-battle-DMiZ4bSF.js";

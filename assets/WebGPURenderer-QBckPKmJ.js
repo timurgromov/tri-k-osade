@@ -1,1 +1,0 @@
-export{n as WebGPURenderer}from"./pixi-battle-XM98J9MB.js";

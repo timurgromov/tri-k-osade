@@ -1,0 +1,1 @@
+export{i as CanvasRenderer}from"./pixi-battle-DjHHzX6Q.js";

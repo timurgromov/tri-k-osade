@@ -2,6 +2,8 @@
 
 Три миссии браузерной головоломки. [Играть](https://timurgromov.github.io/tri-k-osade/).
 
+[Сравнить звучание лучников](https://timurgromov.github.io/tri-k-osade/archers-audio.html).
+
 В репозитории хранится готовая сборка для GitHub Pages. [Лицензии библиотек](THIRD_PARTY_NOTICES.md).
 
 ## Музыка и звуковые эффекты

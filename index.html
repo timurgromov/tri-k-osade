@@ -7,21 +7,19 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/camp-C6cDyv43.webp" fetchpriority="high" />
   <title>Зов знамен</title>
-  <script type="module" crossorigin src="./assets/index-CWay8vXT.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-ta_pesT9.css">
+  <script type="module" crossorigin src="./assets/index-CyZMxvMO.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BH8U2wEa.css">
 </head>
 <body>
   <main class="siege">
+    <div id="play-area" inert>
     <div class="world">
       <div id="fortress" class="gate-scene" aria-hidden="true"><img id="gate" class="gate" src="./assets/gate-0-CjqP4620.webp" alt="" /></div>
       <div id="scene" class="scene" aria-hidden="true"></div>
       <div class="lookout">
         <header class="masthead">
-          <div>
-            <h1>Зов знамен</h1>
-            <p id="mission" class="mission">1. Лесные ворота</p>
-          </div>
-          <button type="button" id="sound" class="wood-button" aria-pressed="false">Включить звук</button>
+          <p id="mission" class="mission">1. Лесные ворота</p>
+          <button type="button" id="sound" class="sound-toggle" aria-label="Звук" aria-pressed="false" title="Включить звук"><span class="speaker" aria-hidden="true"></span></button>
         </header>
         <div class="fortress-status">
           <span id="fortress-label">Крепость</span><span id="fortress-points" aria-hidden="true">4 / 4</span>
@@ -29,12 +27,8 @@
         </div>
       </div>
       <section class="muster" aria-label="Сбор отрядов">
-        <div class="orders" id="orders" aria-label="Отряды к бою"><button class="order red" type="button" disabled><span class="portrait" aria-hidden="true"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span><span><strong>Лучники</strong><small>Соберите 3</small></span></button><button class="order blue" type="button" disabled><span class="portrait" aria-hidden="true"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" /></span><span><strong>Копейщики</strong><small>Соберите 3</small></span></button></div>
-        <div class="queue">
-          <div class="next" id="next">Затем: лучники · конница</div>
-          <span id="sent" aria-label="Отряды отправлены">0 из 4</span>
-        </div>
-        <div class="field" id="field" aria-label="Места сбора"><button id="camp-0" class="camp" type="button" data-units="blue,green,red" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" /></span><span class="slot green"><img src="./assets/green-ChYMN2Gv.webp" alt="" draggable="false" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span></span></button><button id="camp-1" class="camp" type="button" data-units="blue,green,red" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" /></span><span class="slot green"><img src="./assets/green-ChYMN2Gv.webp" alt="" draggable="false" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span></span></button><button id="camp-2" class="camp" type="button" data-units="red,red,green" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span><span class="slot green frontier"><img src="./assets/green-ChYMN2Gv.webp" alt="" draggable="false" /></span></span></button><button id="camp-3" class="camp" type="button" data-units="red,blue,red" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span></span></button><button id="camp-4" class="camp" type="button" data-units="" disabled><span class="slots" aria-hidden="true"><span class="slot vacant"></span><span class="slot vacant"></span><span class="slot vacant"></span></span></button></div>
+        <div class="field" id="field" aria-label="Места сбора"><button id="camp-0" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" /></span><span class="slot green"><img src="./assets/green-ChYMN2Gv.webp" alt="" draggable="false" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span></span></button><button id="camp-1" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" /></span><span class="slot green"><img src="./assets/green-ChYMN2Gv.webp" alt="" draggable="false" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span></span></button><button id="camp-2" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span><span class="slot green frontier"><img src="./assets/green-ChYMN2Gv.webp" alt="" draggable="false" /></span></span></button><button id="camp-3" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span></span></button><button id="camp-4" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot vacant"></span><span class="slot vacant"></span><span class="slot vacant"></span></span></button></div>
+        <div class="orders" id="orders" role="group" aria-label="Отряды к бою"><button class="order red" type="button" disabled><span class="portrait" aria-hidden="true"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" /></span><span class="order-copy"><strong>Лучники</strong><small>Соберите 3</small></span><i class="wax-seal" aria-hidden="true"></i></button><button class="order blue" type="button" disabled><span class="portrait" aria-hidden="true"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" /></span><span class="order-copy"><strong>Копейщики</strong><small>Соберите 3</small></span><i class="wax-seal" aria-hidden="true"></i></button></div>
       </section>
       <section id="victory" class="victory" aria-labelledby="victory-title" hidden>
         <div id="victory-ribbons-back" class="victory-ribbons ribbons-back" aria-hidden="true"></div>
@@ -57,6 +51,11 @@
         <span id="moves">Переносы 0</span>
       </div>
     </footer>
+    </div>
+    <section class="intro" id="intro" aria-labelledby="game-title">
+      <h1 id="game-title">Зов знамен</h1>
+      <button type="button" id="start" class="wood-button" disabled>Начать игру</button>
+    </section>
   </main>
 </body>
 </html>

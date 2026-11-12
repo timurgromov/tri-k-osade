@@ -20,8 +20,9 @@
 
 Источники эффектов [CC0](https://creativecommons.org/publicdomain/zero/1.0/):
 
-- **Лучники.** [Bow manipulation — Vrymaa](https://freesound.org/people/Vrymaa/sounds/734609/), [Longbow — JoeDinesSound](https://freesound.org/people/JoeDinesSound/sounds/534940/), [Arrow Flyby — modusmogulus](https://freesound.org/people/modusmogulus/sounds/789389/).
-- **Копьё, шаги, перенос и удар стрелы.** [Small Wood Piece — qubodup](https://freesound.org/people/qubodup/sounds/822567/), [Stick Whoosh — Sadiquecat](https://freesound.org/people/Sadiquecat/sounds/802451/).
+- **Лучники.** [Bow manipulation — Vrymaa](https://freesound.org/people/Vrymaa/sounds/734609/), [Longbow — JoeDinesSound](https://freesound.org/people/JoeDinesSound/sounds/534940/), [Arrow Flyby — modusmogulus](https://freesound.org/people/modusmogulus/sounds/789389/), [стрела в дерево — JoeDinesSound](https://freesound.org/people/JoeDinesSound/sounds/534956/), [попадание — Ali_6868](https://freesound.org/people/Ali_6868/sounds/384914/).
+- **Шаги, ткань и кличи.** [Сапоги по земле — sturmankin](https://freesound.org/people/sturmankin/sounds/278930/), [трава и земля — Joao_Janz](https://freesound.org/people/Joao_Janz/sounds/571933/), [гравий — Joao_Janz](https://freesound.org/people/Joao_Janz/sounds/571954/), [движение ткани — Joao_Janz](https://freesound.org/people/Joao_Janz/sounds/493501/), [боевые оклики — HaelDB](https://opengameart.org/content/male-gruntyelling-sounds).
+- **Взмах древка и рычага.** [Stick Whoosh — Sadiquecat](https://freesound.org/people/Sadiquecat/sounds/802451/).
 - **Конница.** [Horse Snort — bruno.auzet](https://freesound.org/people/bruno.auzet/sounds/538697/), [Horse Galloping — Max_Headroom](https://freesound.org/people/Max_Headroom/sounds/175356/).
 - **Сталь.** [Sword Draw — SamsterBirdies](https://freesound.org/people/SamsterBirdies/sounds/581594/), [Sword Hit — xkeril](https://freesound.org/people/xkeril/sounds/815763/).
 - **Рама, сбруя, ворота и обвал.** [Wood Creak — Rudmer_Rotteveel](https://freesound.org/people/Rudmer_Rotteveel/sounds/502511/), [Wood Door Close — MadMaxSFX](https://freesound.org/people/MadMaxSFX/sounds/352329/), [Rocks Stones Impacts — Nox_Sound](https://freesound.org/people/Nox_Sound/sounds/567701/).

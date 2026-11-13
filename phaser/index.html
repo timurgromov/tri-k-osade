@@ -7,28 +7,26 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/village-mOL58Gip.webp" fetchpriority="high" />
   <title>Зов знамен</title>
-  <script type="module" crossorigin src="./assets/index-CgkvyJma.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DegQpOQC.css">
+  <script type="module" crossorigin src="./assets/index-Ctv_l3Az.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BKyx5J29.css">
 </head>
 <body>
   <main class="siege" data-faction="humans">
     <div id="play-area" inert>
-    <div class="world">
+    <div class="world" data-fortress="birch">
       <div id="fortress" class="gate-scene" aria-hidden="true"><img id="gate" class="gate" hidden src="./assets/gate-0-CjqP4620.webp" alt="" /></div>
       <div id="scene" class="scene" aria-hidden="true"></div>
       <div class="lookout">
         <header class="masthead">
-          <button type="button" id="back-to-map" class="wood-button back-to-map">Карта</button>
-          <p id="mission" class="mission">1. Тихоокесье</p>
-          <button type="button" id="sound" class="sound-toggle" aria-label="Звук" aria-pressed="false" title="Включить звук"><span class="speaker" aria-hidden="true"></span></button>
+          <button type="button" id="back-to-map" class="lookout-button back-to-map"><span class="map-scroll" aria-hidden="true"></span>Карта</button>
+          <p id="mission" class="mission">1. Тихолесье</p>
+          <button type="button" id="sound" class="lookout-button sound-toggle" aria-label="Звук" aria-pressed="false" title="Включить звук"><span class="speaker" aria-hidden="true"></span></button>
         </header>
-        <div class="lookout-status">
-          <div class="fortress-status">
-            <span id="fortress-label">Крепость</span><span id="fortress-points" aria-hidden="true">4 / 4</span>
-            <div id="health" class="health" role="progressbar" aria-labelledby="fortress-label" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4"><i class="intact"></i><i class="intact"></i><i class="intact"></i><i class="intact"></i></div>
-          </div>
-          <p id="feedback" class="feedback sr-only" role="status"></p>
-        </div>
+        <p id="feedback" class="feedback sr-only" role="status"></p>
+      </div>
+      <div id="fortress-meter" class="fortress-meter">
+        <span id="fortress-points" aria-hidden="true">4 / 4</span>
+        <div id="health" class="health" role="meter" aria-label="Прочность крепости" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4"><i class="intact"></i><i class="intact"></i><i class="intact"></i><i class="intact"></i></div>
       </div>
       <section class="muster" aria-label="Сбор отрядов">
         <div class="field" id="field" aria-label="Места сбора"><button id="camp-0" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span></span></button><button id="camp-1" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot blue frontier"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span></span></button><button id="camp-2" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot blue frontier"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span></span></button><button id="camp-3" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span></span></button><button id="camp-4" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot vacant"></span><span class="slot vacant"></span><span class="slot vacant"></span></span></button></div>

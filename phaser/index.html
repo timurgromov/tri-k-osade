@@ -7,8 +7,8 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/village-mOL58Gip.webp" fetchpriority="high" />
   <title>Зов знамен</title>
-  <script type="module" crossorigin src="./assets/index-DyOFSA-u.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Bnskn8d4.css">
+  <script type="module" crossorigin src="./assets/index-D6VADrDA.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-sb_dn4oS.css">
 </head>
 <body>
   <main class="siege" data-faction="humans">
@@ -69,6 +69,16 @@
       </div>
     </footer>
     </div>
+    <dialog id="unit-introduction" class="unit-introduction" aria-labelledby="unit-intro-name" aria-describedby="unit-intro-story unit-intro-instruction">
+      <div class="unit-intro-portrait"><img id="unit-intro-image" alt="" /></div>
+      <p class="unit-intro-kicker">Новый отряд</p>
+      <h2 id="unit-intro-name"></h2>
+      <p id="unit-intro-story"></p>
+      <p id="unit-intro-instruction" class="unit-intro-instruction"></p>
+      <form method="dialog">
+        <button type="submit" class="faction-button command-button" autofocus>К осаде</button>
+      </form>
+    </dialog>
     <section class="intro campaign-map" id="campaign-map" aria-labelledby="campaign-title" hidden>
       <h1 id="campaign-title" tabindex="-1">Земля людей</h1>
       <ol id="campaign-missions"></ol>

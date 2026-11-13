@@ -7,10 +7,27 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/village-mOL58Gip.webp" fetchpriority="high" />
   <title>Зов знамен</title>
-  <script type="module" crossorigin src="./assets/index-DHic1cpK.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-eTlavOxz.css">
+  <script type="module" crossorigin src="./assets/index-DoOou76S.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BQHYrcph.css">
 </head>
 <body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <filter id="ashen-armor" color-interpolation-filters="sRGB">
+      <!-- Cool the muted bronze highlights more than saturated reds. -->
+      <feColorMatrix in="SourceGraphic" type="matrix" result="muted-metals" values="
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0 0
+        -5.6 4.2 2.8 0 1.82" />
+      <feColorMatrix in="SourceGraphic" type="matrix" result="lilac-grade" values="
+        .69 .30 .09 0 -.025
+        .03 1.03 .10 0 -.025
+        .36 -.20 1.27 0 .015
+        0 0 0 1 0" />
+      <feComposite in="lilac-grade" in2="muted-metals" operator="in" />
+      <feComposite in2="SourceGraphic" operator="atop" />
+    </filter>
+  </svg>
   <main class="siege" data-faction="humans">
     <div id="play-area" inert>
     <div class="world" data-fortress="birch">

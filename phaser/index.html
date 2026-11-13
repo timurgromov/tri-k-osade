@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#24341e" />
   <link rel="icon" href="data:," />
-  <link rel="preload" as="image" href="./assets/village-mOL58Gip.webp" fetchpriority="high" />
-  <title>Зов знамен</title>
-  <script type="module" crossorigin src="./assets/index-BrQwia-o.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Cq1KkzZ0.css">
+  <link rel="preload" as="image" href="./assets/poster-aFPizKWJ.webp" fetchpriority="high" />
+  <title>Демоны Эльнарии</title>
+  <script type="module" crossorigin src="./assets/index-DLJ2azpC.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CQYXFA6U.css">
 </head>
 <body>
   <svg width="0" height="0" aria-hidden="true" style="position:absolute">
@@ -97,12 +97,17 @@
       </form>
     </dialog>
     <section class="intro campaign-map" id="campaign-map" aria-labelledby="campaign-title" hidden>
-      <h1 id="campaign-title" tabindex="-1">Земля людей</h1>
+      <h1 id="campaign-title" tabindex="-1">Эльнария</h1>
       <ol id="campaign-missions"></ol>
     </section>
-    <section class="intro" id="intro" aria-labelledby="game-title">
-      <h1 id="game-title">Зов знамен</h1>
-      <button type="button" id="start" class="wood-button" disabled>Начать игру</button>
+    <section class="title-screen" id="intro" aria-labelledby="game-title">
+      <h1 class="sr-only" id="game-title">Демоны Эльнарии</h1>
+      <div class="title-viewport">
+        <div class="title-stage">
+          <canvas class="title-paint" id="title-paint" aria-hidden="true"></canvas>
+          <button type="button" id="start" class="title-start" disabled><span class="sr-only">Начать игру</span></button>
+        </div>
+      </div>
     </section>
   </main>
 </body>

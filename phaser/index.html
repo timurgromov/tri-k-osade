@@ -7,8 +7,8 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/poster-Ct1FNjk1.webp" fetchpriority="high" />
   <title>Демоны Эльнарии</title>
-  <script type="module" crossorigin src="./assets/index-BJnSNzf6.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CyeTIQuG.css">
+  <script type="module" crossorigin src="./assets/index-DAJliG2t.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C0NWuZUI.css">
 </head>
 <body>
   <svg width="0" height="0" aria-hidden="true" style="position:absolute">
@@ -86,6 +86,17 @@
       </div>
     </footer>
     </div>
+    <section id="mission-loading" class="mission-loading" aria-label="Вход в осаду" hidden>
+      <img id="mission-loading-art" alt="" width="640" height="1138" hidden />
+      <div class="mission-loading-copy">
+        <p id="mission-loading-status" role="status" tabindex="-1">Загрузка<span aria-hidden="true">…</span></p>
+        <p id="mission-loading-error" role="alert" hidden>Не удалось загрузить осаду.</p>
+        <div id="mission-loading-actions" hidden>
+          <button type="button" id="mission-loading-retry" class="faction-button command-button">Повторить</button>
+          <button type="button" id="mission-loading-map" class="faction-button command-button">К карте</button>
+        </div>
+      </div>
+    </section>
     <dialog id="unit-introduction" class="unit-introduction" aria-labelledby="unit-intro-name" aria-describedby="unit-intro-story unit-intro-instruction">
       <div class="unit-intro-portrait"><img id="unit-intro-image" alt="" /></div>
       <p class="unit-intro-kicker">Новый отряд</p>

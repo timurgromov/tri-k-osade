@@ -7,27 +7,10 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/poster-DbyZjcwW.webp" fetchpriority="high" />
   <title>Демоны Эльнарии</title>
-  <script type="module" crossorigin src="./assets/index-DDWexU6i.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Drgtf4gl.css">
+  <script type="module" crossorigin src="./assets/index-B4669x3M.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BVp48HOC.css">
 </head>
 <body>
-  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
-    <filter id="ashen-armor" color-interpolation-filters="sRGB">
-      <!-- Cool the muted bronze highlights more than saturated reds. -->
-      <feColorMatrix in="SourceGraphic" type="matrix" result="muted-metals" values="
-        0 0 0 0 0
-        0 0 0 0 0
-        0 0 0 0 0
-        -5.6 4.2 2.8 0 1.82" />
-      <feColorMatrix in="SourceGraphic" type="matrix" result="lilac-grade" values="
-        .69 .30 .09 0 -.025
-        .03 1.03 .10 0 -.025
-        .36 -.20 1.27 0 .015
-        0 0 0 1 0" />
-      <feComposite in="lilac-grade" in2="muted-metals" operator="in" />
-      <feComposite in2="SourceGraphic" operator="atop" />
-    </filter>
-  </svg>
   <main class="siege" data-faction="humans">
     <div id="play-area" inert>
     <div class="world" data-fortress="birch">
@@ -46,7 +29,7 @@
         <div id="health" class="health" role="meter" aria-label="Прочность крепости" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4"><i class="intact"></i><i class="intact"></i><i class="intact"></i><i class="intact"></i></div>
       </div>
       <section class="muster" aria-label="Сбор отрядов">
-        <div class="field" id="field" aria-label="Места сбора"><button id="camp-0" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span></span></button><button id="camp-1" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot blue frontier"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span></span></button><button id="camp-2" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot blue frontier"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span></span></button><button id="camp-3" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span></span></button><button id="camp-4" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot vacant"></span><span class="slot vacant"></span><span class="slot vacant"></span></span></button></div>
+        <div class="field" id="field" role="group" aria-label="Места сбора" tabindex="-1"><button id="camp-0" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span></span></button><button id="camp-1" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot blue frontier"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span></span></button><button id="camp-2" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot blue frontier"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span></span></button><button id="camp-3" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot red"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="slot blue"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="slot red frontier"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span></span></button><button id="camp-4" class="camp" type="button" disabled><span class="slots" aria-hidden="true"><span class="slot vacant"></span><span class="slot vacant"></span><span class="slot vacant"></span></span></button></div>
         <div class="orders" id="orders" role="group" aria-label="Отряды к бою"><button class="order blue" type="button" disabled><span class="portrait" aria-hidden="true"><img src="./assets/blue-DEgfAio-.webp" alt="" draggable="false" style="--unit-aspect:0.71484375" /></span><span class="order-copy"><strong>Копейщики</strong><small>Соберите 3</small></span><i class="wax-seal" aria-hidden="true"></i></button><button class="order red" type="button" disabled><span class="portrait" aria-hidden="true"><img src="./assets/red-Dtlbs4aB.webp" alt="" draggable="false" style="--unit-aspect:0.54296875" /></span><span class="order-copy"><strong>Лучники</strong><small>Соберите 3</small></span><i class="wax-seal" aria-hidden="true"></i></button></div>
       </section>
       <section id="liberation" class="liberation" aria-label="Освобождение" hidden>

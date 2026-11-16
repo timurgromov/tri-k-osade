@@ -1,0 +1,1 @@
+var e=new URL(`mage-tower-spider-B_eaeMBz.webp`,import.meta.url).href;export{e as default};

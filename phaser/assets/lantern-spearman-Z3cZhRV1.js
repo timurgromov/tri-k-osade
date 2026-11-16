@@ -1,0 +1,1 @@
+var e=new URL(`lantern-spearman-DfAwPpop.webp`,import.meta.url).href;export{e as default};

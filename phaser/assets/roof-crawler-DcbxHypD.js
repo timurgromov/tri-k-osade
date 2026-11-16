@@ -1,0 +1,1 @@
+var e=new URL(`roof-crawler-tViWxh4g.webp`,import.meta.url).href;export{e as default};

@@ -1,0 +1,1 @@
+var e=new URL(`armor-stitcher-CqWHqLqn.webp`,import.meta.url).href;export{e as default};

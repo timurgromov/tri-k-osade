@@ -1,0 +1,1 @@
+var e=new URL(`sorceress-magic-BTc5wHoi.webp`,import.meta.url).href;export{e as default};

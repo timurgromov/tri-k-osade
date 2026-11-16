@@ -1,0 +1,1 @@
+var e=new URL(`sorceress-COLeb0WS.webp`,import.meta.url).href;export{e as default};

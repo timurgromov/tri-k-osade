@@ -1,0 +1,1 @@
+var e=new URL(`shadow-demon-BZYkHPcE.webp`,import.meta.url).href;export{e as default};

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "scenes": {
+    "siege-workshop": {
+      "positions": {
+        "roof-imp": {
+          "x": 0,
+          "y": 10
+        }
+      },
+      "texts": {}
+    }
+  },
+  "shared": {}
+}

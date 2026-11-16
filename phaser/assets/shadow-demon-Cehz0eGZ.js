@@ -1,0 +1,1 @@
+var e=new URL(`shadow-demon-BFts_eer.webp`,import.meta.url).href;export{e as default};

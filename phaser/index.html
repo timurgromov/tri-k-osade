@@ -7,10 +7,10 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/poster-DbyZjcwW.webp" fetchpriority="high" />
   <title>Демоны Эльнарии</title>
-  <meta name="siege-source-revision" content="ba8bad55049c84b1">
-  <script type="module" crossorigin src="./assets/index-Cw0YCVMN.js"></script>
+  <meta name="siege-source-revision" content="f3fb2afd50442adb">
+  <script type="module" crossorigin src="./assets/index-BZUuT2HT.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/siege-layout-MyqbdopB.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-XY4Yt_V1.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-DgA5vDJs.css">
 </head>
 <body>
   <main class="siege" data-faction="humans">
@@ -73,9 +73,10 @@
     <section id="mission-loading" class="mission-loading" aria-label="Вход в осаду" hidden>
       <img id="mission-loading-art" alt="" width="640" height="1138" hidden />
       <div class="mission-loading-copy">
-        <div id="mission-loading-pending">
-          <p role="status">Загрузка…</p>
-          <div class="mission-loading-progress" aria-hidden="true"></div>
+        <div id="mission-loading-pending" hidden>
+          <p role="status">Загрузка осады…</p>
+          <div id="mission-loading-progress" class="mission-loading-progress" role="progressbar"
+            aria-label="Готовность ресурсов осады" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <button type="button" id="mission-loading-start" class="faction-button victory-button" hidden>Начать уровень</button>
         <p id="mission-loading-error" role="alert" hidden>Не удалось загрузить осаду.</p>

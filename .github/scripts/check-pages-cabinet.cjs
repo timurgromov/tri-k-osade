@@ -42,60 +42,31 @@ async function checkLinks(page) {
   assert.deepEqual(loopback, [], `Loopback navigation in ${page.url()}`);
 }
 
-async function compareSorceressFrames(page, atlas, frames) {
-  const mismatched = await page.evaluate(async ({ atlas, frames }) => {
-    async function load(url) {
+async function compareSorceressFrames(page, frames) {
+  const mismatched = await page.evaluate(async frames => {
+    async function pixels(url, x, y, width, height) {
       const image = new Image();
       image.src = url;
       await image.decode();
-      return image;
-    }
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    function pixels(image, x, y, width, height) {
+      const canvas = document.createElement('canvas');
       canvas.width = width;
       canvas.height = height;
-      ctx.drawImage(image, x, y, width, height, 0, 0, width, height);
-      const { data } = ctx.getImageData(0, 0, width, height);
-      let left = width;
-      let right = -1;
-      let top = height;
-      let bottom = -1;
-      for (let row = 0; row < height; row++) {
-        for (let col = 0; col < width; col++) {
-          if (data[(row * width + col) * 4 + 3] === 0) continue;
-          left = Math.min(left, col);
-          right = Math.max(right, col);
-          top = Math.min(top, row);
-          bottom = Math.max(bottom, row);
-        }
-      }
-      if (right === -1) throw new Error('Empty Sorceress frame');
-      return ctx.getImageData(left, top, right - left + 1, bottom - top + 1);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(image, -x, -y);
+      return ctx.getImageData(0, 0, width, height).data;
     }
-    const sheet = await load(atlas);
-    const width = sheet.naturalWidth / 6;
-    const height = sheet.naturalHeight / 2;
-    const images = await Promise.all(frames.map(load));
-    const thumbnails = [...document.querySelectorAll('#animation-montage .montage-frames img')].slice(0, 2);
-    if (thumbnails.length !== 2) throw new Error('Missing Sorceress stance or ready thumbnail');
-    await Promise.all(thumbnails.map(image => image.decode()));
-    function same(a, b) {
-      return a.width === b.width && a.height === b.height &&
-        a.data.every((value, i) => value === b.data[i]);
-    }
-    thumbnails.forEach((image, index) => {
-      if (!same(pixels(sheet, index * width, 0, width, height), pixels(image, 0, 0, width, height))) {
-        throw new Error('Sorceress thumbnail ' + (index + 1) + ' differs from the loaded atlas');
-      }
-    });
-    return images.flatMap((image, index) => {
-      const catalog = pixels(sheet, index % 6 * width, Math.floor(index / 6) * height, width, height);
-      const battle = pixels(image, 0, 0, image.naturalWidth, image.naturalHeight);
-      return same(catalog, battle) ? [] : [index];
-    });
-  }, { atlas, frames });
-  assert.deepEqual(mismatched, [], 'Game drawings differ from the Sorceress catalog');
+    const bodies = new Map([...document.querySelectorAll('#clip-frames [data-published-body]')]
+      .map(frame => [Number(frame.dataset.bodyIndex), frame.dataset.publishedBody]));
+    if (bodies.size !== frames.length) throw new Error('Missing published Sorceress body layer');
+    return (await Promise.all(frames.map(async (url, index) => {
+      const [game, catalog] = await Promise.all([
+        pixels(url, 0, 0, 116, 162),
+        pixels(bodies.get(index), 68, 10, 116, 162),
+      ]);
+      return game.every((value, i) => value === catalog[i]) ? [] : [index];
+    }))).flat();
+  }, frames);
+  assert.deepEqual(mismatched, [], 'Game drawings differ from the Sorceress catalog body layers');
 }
 
 async function verify() {
@@ -133,7 +104,7 @@ async function verify() {
       assert(atlas.ok(), `Failed to load ${atlasUrl}`);
       assert((await atlas.body()).equals(readFileSync(join('phaser/assets', basename(atlasUrl)))),
         'The Sorceress atlas served by Pages differs from the checked-out release');
-      await compareSorceressFrames(page, atlas.url(), frames);
+      await compareSorceressFrames(page, frames);
     });
     await checkLinks(page);
     assert.deepEqual(errors, [], 'Browser errors');

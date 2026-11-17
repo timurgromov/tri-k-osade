@@ -1,5 +1,18 @@
 {
   "scenes": {
+    "bridge-tower": {
+      "positions": {
+        "tower-left": {
+          "x": 0,
+          "y": 10
+        },
+        "tower-right": {
+          "x": 0,
+          "y": 10
+        }
+      },
+      "texts": {}
+    },
     "siege-workshop": {
       "positions": {
         "left-guard": {

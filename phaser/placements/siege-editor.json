@@ -1,14 +1,5 @@
 {
   "scenes": {
-    "mage-tower": {
-      "positions": {
-        "tower-right": {
-          "x": 6,
-          "y": 0
-        }
-      },
-      "texts": {}
-    },
     "siege-workshop": {
       "positions": {
         "left-guard": {

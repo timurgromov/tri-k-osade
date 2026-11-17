@@ -8,13 +8,23 @@
   <link rel="icon" href="data:," />
   <link rel="preload" as="image" href="./assets/poster-DbyZjcwW.webp" fetchpriority="high" />
   <title>Демоны Эльнарии</title>
-  <meta name="siege-source-revision" content="1ada6484208c2f63">
-  <script type="module" crossorigin src="./assets/index-Cu51BOC_.js"></script>
+  <script>
+    const entryParams = new URLSearchParams(location.search);
+    if (entryParams.has('editor') || entryParams.has('editor-preview') ||
+        ('production' === 'birch-editor' && !entryParams.has('play')) ||
+        ('false' === 'true' && (entryParams.has('preview-birch') || entryParams.has('review')))) {
+      document.documentElement.dataset.editorLoading = '';
+    }
+  </script>
+  <style>#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
+  <meta name="siege-source-revision" content="e0a623b192b75d04">
+  <script type="module" crossorigin src="./assets/index-CgpzntyL.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/siege-layout-BSK67vAx.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="stylesheet" crossorigin href="./assets/index--tjMf815.css">
 </head>
 <body>
+  <p id="editor-startup" role="status">Загрузка редактора…</p>
   <main class="siege" data-faction="humans">
     <div id="play-area" inert>
     <div class="world" data-fortress="birch">

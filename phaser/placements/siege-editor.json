@@ -1,25 +1,5 @@
 {
   "scenes": {
-    "outer-bastion": {
-      "positions": {
-        "field-1-slot-0-0": {
-          "scale": 139,
-          "x": 0,
-          "y": 0
-        },
-        "field-1-slot-1-0": {
-          "scale": 143,
-          "x": 0,
-          "y": 0
-        },
-        "field-1-slot-1-1": {
-          "scale": 138,
-          "x": 0,
-          "y": 0
-        }
-      },
-      "texts": {}
-    },
     "siege-workshop": {
       "positions": {
         "left-guard": {

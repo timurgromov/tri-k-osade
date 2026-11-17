@@ -4,11 +4,11 @@
       "positions": {
         "tower-left": {
           "x": 0,
-          "y": 10
+          "y": 22
         },
         "tower-right": {
           "x": 0,
-          "y": 10
+          "y": 20
         }
       },
       "texts": {}

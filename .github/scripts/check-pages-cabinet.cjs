@@ -61,7 +61,7 @@ async function compareSorceressFrames(page, frames) {
     return (await Promise.all(frames.map(async (url, index) => {
       const [game, catalog] = await Promise.all([
         pixels(url, 0, 0, 116, 162),
-        pixels(bodies.get(index), 68, 10, 116, 162),
+        pixels(bodies.get(index), 0, 0, 116, 162),
       ]);
       return game.every((value, i) => value === catalog[i]) ? [] : [index];
     }))).flat();

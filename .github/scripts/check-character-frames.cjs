@@ -3,21 +3,43 @@ const assert = require('node:assert/strict');
 const cell = 192;
 const frameList = '#animation-montage:not([hidden]) .montage-frames [data-frame] img';
 
-async function sceneReady(page) {
-  await page.waitForFunction(() => {
-    const scene = document.querySelector('#scene');
-    if (!scene?.dataset.unitDrawings) return false;
-    const posts = [...document.querySelectorAll('#fortress [data-defeat-figure]')];
-    return posts.every(figure => {
-      const poses = [...figure.parentElement.querySelectorAll('[data-idle-pose]')];
-      return figure.style.backgroundImage && figure.parentElement.querySelector('[data-defeat-smoke]')?.style.backgroundImage &&
-        poses.length && poses.every(pose => pose.naturalWidth > 0 && pose.getAnimations().length > 0);
-    });
-  }, null, { timeout: 25_000 });
+async function sceneReady(page, expectedPosts) {
+  try {
+    const ready = await page.waitForFunction(expectedPosts => {
+      const scene = document.querySelector('#scene');
+      if (!scene || (!expectedPosts && !scene.dataset.unitDrawings) || document.querySelector('#play-area')?.inert) return false;
+      const posts = [...document.querySelectorAll('#fortress [data-defeat-figure]')].map((figure, index) => {
+        const root = figure.parentElement;
+        const shown = root.checkVisibility({ opacityProperty: true, visibilityProperty: true });
+        const poses = [...root.querySelectorAll('[data-idle-pose]')];
+        return {
+          index,
+          id: figure.dataset.defeatFigure,
+          hit: Number(figure.dataset.texturePhase),
+          shown,
+          ready: Boolean(figure.style.backgroundImage && root.querySelector('[data-defeat-smoke]')?.style.backgroundImage &&
+            poses.length && poses.every(pose => pose.naturalWidth > 0 && pose.getAnimations().length > 0)),
+        };
+      });
+      const selected = expectedPosts
+        ? expectedPosts.map(expected => {
+          const actual = posts[expected.index];
+          return actual?.id === expected.id && actual.hit === expected.hit ? actual : undefined;
+        })
+        : posts.filter(post => post.shown);
+      return selected.every(post => post?.shown && post.ready) ? posts : false;
+    }, expectedPosts ?? null, { timeout: 25_000 });
+    try { return await ready.jsonValue(); }
+    finally { await ready.dispose(); }
+  } catch (error) {
+    const stage = await page.locator('#fortress').getAttribute('data-stage', { timeout: 1000 }).catch(() => null);
+    const expected = expectedPosts?.map(post => `${post.id} (hit ${post.hit})`).join(', ') ?? 'opening garrison';
+    throw new Error(`Garrison drawings unavailable on ${page.url()} at stage ${stage}: ${expected}`, { cause: error });
+  }
 }
 
 // Take the textures already attached to the actual battle DOM, including aligned atlases.
-function readGarrison() {
+function readGarrison(indices) {
   const c = 192;
   const matrix = (element, anchor, scale = 1) => {
     const [cols, rows] = element.style.backgroundSize.split(' ').map(value => parseFloat(value) / 100);
@@ -29,7 +51,9 @@ function readGarrison() {
       dest: [anchor[0] * (1 - scale), anchor[1] * (1 - scale), c * scale, c * scale],
     }));
   };
-  return [...document.querySelectorAll('#fortress [data-defeat-figure]')].map(figure => {
+  const figures = [...document.querySelectorAll('#fortress [data-defeat-figure]')];
+  return indices.map(index => {
+    const figure = figures[index];
     const root = figure.parentElement;
     const poses = [...root.querySelectorAll('[data-idle-pose]')];
     const keyframes = poses.map(pose => pose.getAnimations().find(clip =>
@@ -150,14 +174,17 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
   for (const mission of missions) {
     await openRelease(page, '?mission=' + encodeURIComponent(mission));
     await page.locator('#mission-loading-start').click({ timeout: 25_000 });
-    await sceneReady(page);
+    const posts = await sceneReady(page);
     const drawings = JSON.parse(await page.locator('#scene').getAttribute('data-unit-drawings'));
     for (const [id, frames] of Object.entries(drawings)) record(units, id, mission, frames);
-    const posts = await page.evaluate(readGarrison);
-    for (const { id, frames } of posts) {
-      const rendered = await page.evaluate(renderFrames, { groups: frames.map(frame => [frame]), cell });
-      record(game, id, mission, rendered);
+    async function recordPosts(entries) {
+      const drawn = await page.evaluate(readGarrison, entries.map(post => post.index));
+      for (const { id, frames } of drawn) {
+        const rendered = await page.evaluate(renderFrames, { groups: frames.map(frame => [frame]), cell });
+        record(game, id, mission, rendered);
+      }
     }
+    await recordPosts(posts.filter(post => post.shown));
     const heroes = page.locator('#fortress .welcome-hero, #liberation .welcome-hero');
     for (const hero of await heroes.all()) {
       await hero.locator('img[src]:not([src=""])').last().waitFor({ state: 'attached', timeout: 15_000 });
@@ -168,6 +195,16 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
       const rendered = await page.evaluate(renderFrames, { groups: [layers], cell, type: 'hero' });
       record(game, 'yudante', mission, rendered);
       heroScenes++;
+    }
+    // A post revealed later in the siege has no idle animation at the opening.
+    // Sample it in the published wave preview immediately before its defeat.
+    const laterPosts = Map.groupBy(posts.filter(post => !post.shown), post => post.hit);
+    for (const [hit, entries] of laterPosts) {
+      assert(Number.isInteger(hit) && hit > 1, `Unexpected hidden opening post in ${mission}: ${entries[0].id}`);
+      await openRelease(page, `?editor&review=animation&mission=${encodeURIComponent(mission)}&scene=field&field=${hit}`);
+      await sceneReady(page, entries);
+      await recordPosts(entries);
+      console.log(`${mission} · wave ${hit} · ${entries.map(post => post.id).join(', ')}`);
     }
   }
   assert(missions.length && units.size && game.size && heroScenes, 'Could not discover the current battle cast');

@@ -1,0 +1,1 @@
+var e=new URL(`siege-loading-crossing-CnPTu7dQ.webp`,import.meta.url).href;export{e as t};

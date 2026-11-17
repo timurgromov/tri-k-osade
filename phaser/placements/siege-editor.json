@@ -13,6 +13,21 @@
       },
       "texts": {}
     },
+    "sawmill": {
+      "positions": {
+        "guard-sawmill-pitch-witch-1": {
+          "scale": 72,
+          "x": 0,
+          "y": 0
+        },
+        "guard-sawmill-riveter-1": {
+          "scale": 93,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "texts": {}
+    },
     "siege-workshop": {
       "positions": {
         "left-guard": {

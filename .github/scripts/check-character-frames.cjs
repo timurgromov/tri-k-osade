@@ -19,7 +19,6 @@ async function sceneReady(page) {
 // Take the textures already attached to the actual battle DOM, including aligned atlases.
 function readGarrison() {
   const c = 192;
-  const rect = element => ['left', 'top', 'width', 'height'].map(key => parseFloat(element.style[key]));
   const matrix = (element, anchor, scale = 1) => {
     const [cols, rows] = element.style.backgroundSize.split(' ').map(value => parseFloat(value) / 100);
     const source = element.style.backgroundImage.match(/^url\("(.*)"\)$/)?.[1];
@@ -35,13 +34,16 @@ function readGarrison() {
     const poses = [...root.querySelectorAll('[data-idle-pose]')];
     const keyframes = poses.map(pose => pose.getAnimations().find(clip =>
       clip.effect instanceof KeyframeEffect && clip.effect.getKeyframes().length > 1)?.effect?.getKeyframes());
-    const width = parseFloat(figure.style.width);
-    const anchor = [
-      Math.round(-parseFloat(figure.style.translate) / 100 * c),
-      Math.round((1 + parseFloat(figure.style.bottom) / width) * c),
-    ];
+    const { width, anchor } = JSON.parse(figure.dataset.defeatGeometry);
+    const factor = c / width;
     const makePose = pose => {
-      const [x, y, w, h] = rect(pose).map(value => value / width * c);
+      const rect = JSON.parse(pose.dataset.idleRect);
+      for (const [index, key] of ['left', 'top', 'width', 'height'].entries()) {
+        if (Math.abs(parseFloat(pose.style[key]) * 3.9 - rect[index]) > .002) {
+          throw new Error('Battle pose bounds differ from its source geometry: ' + figure.dataset.defeatFigure);
+        }
+      }
+      const [x, y, w, h] = rect.map(value => value * factor);
       return { source: pose.currentSrc, filter: pose.style.filter, dest: [anchor[0] + x, anchor[1] + y, w, h] };
     };
     const sequence = keyframes[0].slice(0, -1).map((_, index) => {
@@ -50,7 +52,7 @@ function readGarrison() {
       return makePose(poses[pose]);
     });
     const smoke = root.querySelector('[data-defeat-smoke]');
-    const smokeScale = Math.round(parseFloat(smoke.style.width) / width * 100) / 100;
+    const smokeScale = Math.round(parseFloat(smoke.style.width) / parseFloat(figure.style.width) * 100) / 100;
     return { id: figure.dataset.defeatFigure, frames: [
       ...sequence, ...matrix(figure, anchor), ...matrix(smoke, anchor, smokeScale),
     ] };
@@ -119,7 +121,7 @@ async function compareThumbnails(page, expected) {
         total += delta;
         if (delta > 8) changed++;
       }
-      // CSS rounds cqw coordinates before we project them back into card pixels.
+      // Allow rounding at translucent edges when drawing CSS filter colors on a canvas.
       if (!visible || total / visible > 1 || changed / visible > 0.005) {
         disagreements.push({ frame: index + 1, average: +(total / visible).toFixed(2),
           changed: +(changed / visible * 100).toFixed(2) });

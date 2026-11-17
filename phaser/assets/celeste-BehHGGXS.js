@@ -1,0 +1,1 @@
+var e=new URL(`celeste-D-ANphZt.webp`,import.meta.url).href;export{e as default};

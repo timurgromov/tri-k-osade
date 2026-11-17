@@ -7,6 +7,7 @@ on:
       - 'phaser/**'
       - '.github/workflows/check-pages-cabinet.yml'
       - '.github/scripts/check-pages-cabinet.cjs'
+      - '.github/scripts/check-character-frames.cjs'
   workflow_dispatch:
 
 permissions:
@@ -46,7 +47,7 @@ jobs:
           done
           echo "::error::Pages did not confirm publication of $GITHUB_SHA"
           exit 1
-      - name: Check the game, cabinet and Sorceress card in Chrome
+      - name: Compare battle drawings and catalog cards in Chrome
         run: |
           npm install --ignore-scripts --no-package-lock --no-save --prefix "$RUNNER_TEMP/pages-cabinet" playwright@1.61.1
           NODE_PATH="$RUNNER_TEMP/pages-cabinet/node_modules" node .github/scripts/check-pages-cabinet.cjs

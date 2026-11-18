@@ -17,20 +17,20 @@
     }
   </script>
   <style>#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
-  <meta name="siege-source-revision" content="b08131f81ccd63a9">
-  <script type="module" crossorigin src="./assets/index-D6dFSC0v.js"></script>
+  <meta name="siege-source-revision" content="8c3d7b720ef26e1a">
+  <script type="module" crossorigin src="./assets/index--ru_RtIN.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/garrison-roster-nxsqTM16.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="modulepreload" crossorigin href="./assets/preload-helper-DclECHGd.js">
   <link rel="modulepreload" crossorigin href="./assets/demon-defeat-frames-B6L-LUL9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-sheet-y-e_f8PN.js">
   <link rel="modulepreload" crossorigin href="./assets/published-montage-DvUqMr1O.js">
-  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-BrmbcrQa.js">
+  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-D222rJCn.js">
   <link rel="modulepreload" crossorigin href="./assets/missions-rRPNYRCP.js">
-  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-VeACLqsp.js">
+  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-DWgQeXXO.js">
   <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-Dago2WV9.js">
   <link rel="modulepreload" crossorigin href="./assets/sorceress-alignment-3GwgFGEA.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-BtAN4sS7.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-Xm0aa5bM.css">
 </head>
 <body>
   <p id="editor-startup" role="status">Загрузка редактора…</p>
@@ -131,10 +131,14 @@
       <div id="campaign-landscape" tabindex="0" role="region" aria-label="Маршрут Земли людей">
         <div id="campaign-route">
           <div id="campaign-terrain" aria-hidden="true"></div>
+          <div id="campaign-motion" aria-hidden="true"></div>
+          <div id="campaign-hero" aria-hidden="true">
+            <span class="campaign-hero-name">Юданте</span>
+            <span class="campaign-hero-sprite"></span>
+          </div>
         </div>
       </div>
-      <canvas id="campaign-motion" aria-hidden="true"></canvas>
-      <h1 id="campaign-title" tabindex="-1">Земля людей</h1>
+      <h1 class="sr-only" id="campaign-title" tabindex="-1">Земля людей</h1>
       <button type="button" id="map-sound" class="lookout-button sound-toggle menu-sound" aria-label="Звук меню" aria-pressed="true" title="Выключить звук"><span class="speaker" aria-hidden="true"></span></button>
     </section>
     <section class="title-screen" id="intro" aria-labelledby="game-title">

@@ -100,21 +100,22 @@
     },
     "graven": {
       "garrison": {
-        "1": "barracks-flying-sentry",
+        "1": "mage-tower-spider",
         "2": "barracks-flying-sentry",
-        "4": "mage-tower-spider",
+        "4": "barracks-flying-sentry",
         "5": "sawmill-riveter"
       },
       "positions": {
         "boss": {
           "scale": 113,
-          "x": -2,
+          "x": -3,
           "y": -5
         },
         "guard-added-1": {
-          "scale": 74,
-          "x": 295,
-          "y": 59
+          "mirror": true,
+          "scale": 63,
+          "x": 191,
+          "y": 267
         },
         "guard-added-2": {
           "mirror": true,
@@ -123,10 +124,9 @@
           "y": 76
         },
         "guard-added-4": {
-          "mirror": true,
-          "scale": 61,
-          "x": 308,
-          "y": 269
+          "scale": 85,
+          "x": 327,
+          "y": 91
         },
         "guard-added-5": {
           "mirror": true,
@@ -135,9 +135,9 @@
           "y": 263
         },
         "guard-barracks-four-arm-oni-1": {
-          "scale": 90,
-          "x": 10,
-          "y": -37
+          "scale": 110,
+          "x": -5,
+          "y": -33
         },
         "guard-birch-imp-1": {
           "x": -44,

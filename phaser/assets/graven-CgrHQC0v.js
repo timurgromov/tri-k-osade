@@ -1,0 +1,1 @@
+var e=new URL(`graven-KkQ7VsJX.webp`,import.meta.url).href;export{e as default};

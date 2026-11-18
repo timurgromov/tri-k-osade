@@ -1,0 +1,1 @@
+var e=new URL(`frame-09-BujV034L.webp`,import.meta.url).href;export{e as default};

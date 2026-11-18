@@ -1,0 +1,1 @@
+var e=new URL(`frame-04-BTORrCoL.webp`,import.meta.url).href;export{e as default};

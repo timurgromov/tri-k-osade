@@ -1,0 +1,1 @@
+var e=new URL(`frame-20-80dayXmD.webp`,import.meta.url).href;export{e as default};

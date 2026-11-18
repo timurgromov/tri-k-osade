@@ -1,0 +1,1 @@
+var e=new URL(`frame-06-DdmhPLIF.webp`,import.meta.url).href;export{e as default};

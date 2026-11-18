@@ -13,6 +13,165 @@
       },
       "texts": {}
     },
+    "crown-citadel": {
+      "garrison": {
+        "1": "barracks-flying-sentry",
+        "2": "birch-hammer",
+        "3": "mage-tower-spider",
+        "4": "wheat-boar"
+      },
+      "positions": {
+        "guard-added-1": {
+          "scale": 96,
+          "x": 195,
+          "y": 177
+        },
+        "guard-added-2": {
+          "mirror": true,
+          "x": 86,
+          "y": 250
+        },
+        "guard-added-3": {
+          "mirror": true,
+          "x": 306,
+          "y": 267
+        },
+        "guard-added-4": {
+          "scale": 73,
+          "x": 193,
+          "y": 124
+        },
+        "guard-sawmill-branchhorn-1": {
+          "mirror": true,
+          "x": -219,
+          "y": -15
+        },
+        "guard-sawmill-branchhorn-archer-1": {
+          "x": 197,
+          "y": 66
+        },
+        "guard-shadow-demon-1": {
+          "x": 25,
+          "y": -1
+        }
+      },
+      "texts": {}
+    },
+    "cypress-gate": {
+      "garrison": {
+        "2": "lantern-spearman",
+        "5": "mirror-shield"
+      },
+      "positions": {
+        "guard-added-2": {
+          "x": 329,
+          "y": 139
+        },
+        "guard-added-5": {
+          "x": 188,
+          "y": 143
+        },
+        "guard-shadow-demon-1": {
+          "x": 15,
+          "y": 9
+        },
+        "guard-wheat-gargoyle-1": {
+          "x": -133,
+          "y": 4
+        },
+        "guard-wheat-seal-keeper-1": {
+          "x": 0,
+          "y": 3
+        },
+        "tower-left": {
+          "x": 1,
+          "y": 8
+        },
+        "tower-right": {
+          "x": 0,
+          "y": 8
+        },
+        "wall": {
+          "scale": 105,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "texts": {}
+    },
+    "mage-tower": {
+      "garrison": {
+        "2": "celeste",
+        "3": "cinder-broodkeeper",
+        "4": "sawmill-branchhorn-archer",
+        "5": "roof-crawler"
+      },
+      "positions": {
+        "field-1-slot-1-2": {
+          "x": -4,
+          "y": 1
+        },
+        "field-1-slot-2-2": {
+          "x": 0,
+          "y": 2
+        },
+        "field-1-slot-3-2": {
+          "x": -3,
+          "y": 2
+        },
+        "guard-added-2": {
+          "mirror": true,
+          "scale": 108,
+          "x": 305,
+          "y": 253
+        },
+        "guard-added-3": {
+          "scale": 82,
+          "x": 72,
+          "y": 150
+        },
+        "guard-added-4": {
+          "scale": 128,
+          "x": 316,
+          "y": 149
+        },
+        "guard-added-5": {
+          "x": 196,
+          "y": 128
+        },
+        "guard-mage-tower-spider-1": {
+          "scale": 88,
+          "x": 0,
+          "y": 0
+        },
+        "tower-right": {
+          "x": -1,
+          "y": 0
+        }
+      },
+      "texts": {}
+    },
+    "outer-bastion": {
+      "positions": {
+        "guard-barracks-four-arm-oni-1": {
+          "x": -13,
+          "y": 9
+        },
+        "guard-succubus-scythe-1": {
+          "x": 19,
+          "y": 9
+        },
+        "tower-left": {
+          "x": 0,
+          "y": 7
+        },
+        "tower-right": {
+          "x": 0,
+          "y": 7
+        }
+      },
+      "texts": {}
+    },
     "sawmill": {
       "positions": {
         "guard-sawmill-pitch-witch-1": {

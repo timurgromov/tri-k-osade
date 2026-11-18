@@ -17,20 +17,20 @@
     }
   </script>
   <style>#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
-  <meta name="siege-source-revision" content="a6611ebfd1f651a5">
-  <script type="module" crossorigin src="./assets/index-CpR__Mtu.js"></script>
+  <meta name="siege-source-revision" content="b08131f81ccd63a9">
+  <script type="module" crossorigin src="./assets/index-D6dFSC0v.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/garrison-roster-nxsqTM16.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="modulepreload" crossorigin href="./assets/preload-helper-DclECHGd.js">
   <link rel="modulepreload" crossorigin href="./assets/demon-defeat-frames-B6L-LUL9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-sheet-y-e_f8PN.js">
   <link rel="modulepreload" crossorigin href="./assets/published-montage-DvUqMr1O.js">
-  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-D4fW6CZf.js">
+  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-BrmbcrQa.js">
   <link rel="modulepreload" crossorigin href="./assets/missions-rRPNYRCP.js">
-  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-DLGNqMiG.js">
+  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-VeACLqsp.js">
   <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-Dago2WV9.js">
   <link rel="modulepreload" crossorigin href="./assets/sorceress-alignment-3GwgFGEA.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-B5QqGGcO.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-BtAN4sS7.css">
 </head>
 <body>
   <p id="editor-startup" role="status">Загрузка редактора…</p>
@@ -45,6 +45,17 @@
           <p id="mission" class="mission"><span id="mission-name">1. Тихолесье</span></p>
           <button type="button" id="sound" class="lookout-button sound-toggle" aria-label="Звук" aria-pressed="true" title="Выключить звук"><span class="speaker" aria-hidden="true"></span></button>
         </header>
+        <div class="scout-tools">
+          <button id="scout-hint" class="lookout-button" type="button" aria-controls="scout-note" hidden>
+            <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='40'%20height='38'%20viewBox='0%200%2040%2038'%20fill='none'%3e%3cdefs%3e%3clinearGradient%20id='paper'%20x2='.85'%20y2='1'%20gradientUnits='objectBoundingBox'%3e%3cstop%20stop-color='%23fff2c2'/%3e%3cstop%20offset='1'%20stop-color='%23d8a353'/%3e%3c/linearGradient%3e%3c/defs%3e%3cpath%20d='m3%209%2010-5%2011%204%2010-5%203%2025-11%206-12-5-9%205z'%20fill='url(%23paper)'%20stroke='%23513018'%20stroke-width='2'%20stroke-linejoin='round'/%3e%3cpath%20d='m13%205%202%2023%2011%205-2-24z'%20fill='%23b78748'%20opacity='.62'/%3e%3cpath%20d='m13%206%202%2021m9-17%202%2021'%20stroke='%23fff1b9'%20opacity='.8'/%3e%3cpath%20d='M8%2026c1-6%202-8%206-7s5%205%208%201%203-5%207-6'%20stroke='%2384441e'%20stroke-width='1.8'%20stroke-dasharray='3%202'%20stroke-linecap='round'/%3e%3cpath%20d='m27%2011%205%205m-1-6-3%207'%20stroke='%238c271e'%20stroke-width='2.5'%20stroke-linecap='round'/%3e%3cpath%20d='m6%2016%203-5%203%205z'%20fill='%2368714a'/%3e%3c/svg%3e" width="32" height="32" alt="">
+            <span class="scout-label">Подсказка<span class="scout-badge"></span></span>
+          </button>
+          <div id="scout-note" hidden>
+            <span id="scout-message" role="status"></span>
+            <button id="scout-undo" type="button" hidden>Бесплатная отмена</button>
+            <button id="scout-close" type="button" aria-label="Закрыть подсказку">×</button>
+          </div>
+        </div>
         <p id="feedback" class="feedback sr-only" role="status"></p>
       </div>
       <div id="fortress-meter" class="fortress-meter">

@@ -100,7 +100,7 @@
     },
     "graven": {
       "garrison": {
-        "1": "mage-tower-spider",
+        "1": "wheat-boar",
         "2": "barracks-flying-sentry",
         "4": "barracks-flying-sentry",
         "5": "sawmill-riveter"
@@ -112,32 +112,31 @@
           "y": -5
         },
         "guard-added-1": {
-          "mirror": true,
-          "scale": 63,
-          "x": 191,
-          "y": 267
+          "scale": 76,
+          "x": 196,
+          "y": 260
         },
         "guard-added-2": {
           "mirror": true,
           "scale": 74,
-          "x": 48,
-          "y": 76
+          "x": 44,
+          "y": 82
         },
         "guard-added-4": {
-          "scale": 85,
-          "x": 327,
-          "y": 91
+          "scale": 81,
+          "x": 289,
+          "y": 58
         },
         "guard-added-5": {
           "mirror": true,
           "scale": 68,
-          "x": 61,
+          "x": 59,
           "y": 263
         },
         "guard-barracks-four-arm-oni-1": {
           "scale": 110,
-          "x": -5,
-          "y": -33
+          "x": 17,
+          "y": -27
         },
         "guard-birch-imp-1": {
           "x": -44,

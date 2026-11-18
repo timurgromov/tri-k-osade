@@ -17,20 +17,20 @@
     }
   </script>
   <style>#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
-  <meta name="siege-source-revision" content="c2e0ebd1e7078c0d">
-  <script type="module" crossorigin src="./assets/index-CzFQ2Rtp.js"></script>
+  <meta name="siege-source-revision" content="a52a2c6f5689d743">
+  <script type="module" crossorigin src="./assets/index-CfKg_nJ8.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/garrison-roster-BKuhZk-9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="modulepreload" crossorigin href="./assets/preload-helper-DclECHGd.js">
   <link rel="modulepreload" crossorigin href="./assets/demon-defeat-frames-B6L-LUL9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-sheet-bldEDkeg.js">
   <link rel="modulepreload" crossorigin href="./assets/published-montage-B74SxHCN.js">
-  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-DWTROJRu.js">
+  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-CU8RzeR2.js">
   <link rel="modulepreload" crossorigin href="./assets/missions-Byw2SMJX.js">
-  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-DHBGma1J.js">
+  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-Cu7np3rt.js">
   <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-CSut8l65.js">
   <link rel="modulepreload" crossorigin href="./assets/sorceress-alignment-3GwgFGEA.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-d5QDD6CD.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-BKxhrivM.css">
 </head>
 <body>
   <p id="editor-startup" role="status">Загрузка редактора…</p>
@@ -116,10 +116,32 @@
         <button type="submit" class="faction-button command-button" autofocus>К осаде</button>
       </form>
     </dialog>
-    <section class="intro campaign-map" id="campaign-map" aria-labelledby="campaign-title" hidden>
-      <h1 id="campaign-title" tabindex="-1">Эльнария</h1>
+    <section class="campaign-map" id="campaign-map" aria-labelledby="campaign-title" hidden>
+      <div id="campaign-landscape">
+        <canvas id="campaign-terrain" aria-hidden="true"></canvas>
+        <canvas id="campaign-motion" aria-hidden="true"></canvas>
+      </div>
+      <header class="campaign-panel campaign-heading">
+        <h1 id="campaign-title" tabindex="-1">Земля людей</h1>
+      </header>
       <button type="button" id="map-sound" class="lookout-button sound-toggle menu-sound" aria-label="Звук меню" aria-pressed="true" title="Выключить звук"><span class="speaker" aria-hidden="true"></span></button>
-      <ol id="campaign-missions"></ol>
+      <div class="campaign-controls">
+        <nav aria-label="Управление картой">
+          <button type="button" id="campaign-overview" class="campaign-button" aria-pressed="false">Обзор</button>
+          <button type="button" id="campaign-center" class="campaign-button">К Юданте</button>
+          <details id="campaign-index">
+            <summary class="campaign-button">Миссии</summary>
+            <ol id="campaign-missions" class="campaign-panel"></ol>
+          </details>
+        </nav>
+        <section class="campaign-panel campaign-selection" aria-label="Выбранная миссия">
+          <div>
+            <h2 id="campaign-location"></h2>
+            <p id="campaign-status"></p>
+          </div>
+          <button id="campaign-enter" class="wood-button" type="button">К осаде</button>
+        </section>
+      </div>
     </section>
     <section class="title-screen" id="intro" aria-labelledby="game-title">
       <h1 class="sr-only" id="game-title">Демоны Эльнарии</h1>

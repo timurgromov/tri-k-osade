@@ -1,15 +1,13 @@
 const assert = require('node:assert/strict');
 
 const cell = 192;
-const separateAttackCards = new Set(['yellow', 'orc']);
-const fullHeightUnitCards = new Set(['elf', 'orc']);
 const frameList = '#animation-montage:not([hidden]) .montage-frames [data-frame] img';
 
 async function sceneReady(page, expectedPosts) {
   try {
     const ready = await page.waitForFunction(expectedPosts => {
       const scene = document.querySelector('#scene');
-      if (!scene || (!expectedPosts && !scene.dataset.unitDrawings) || document.querySelector('#play-area')?.inert) return false;
+      if (!scene || (!expectedPosts && (!scene.dataset.unitDrawings || !scene.dataset.unitCards)) || document.querySelector('#play-area')?.inert) return false;
       const fortress = document.querySelector('#fortress');
       if (!fortress || [...fortress.querySelectorAll('[data-placed-garrison]')]
         .some(post => !post.querySelector('[data-defeat-figure]'))) return false;
@@ -96,7 +94,7 @@ function readGarrison(entries) {
 }
 
 // Normalize the scene's drawing scale on the same transparent canvas used by the card.
-async function renderFrames({ groups, cell, type }) {
+async function renderFrames({ groups, cell, type, layout }) {
   const textures = new Map();
   async function load(source) {
     if (!textures.has(source)) {
@@ -120,16 +118,21 @@ async function renderFrames({ groups, cell, type }) {
         continue;
       }
 
-      let height = type === 'hero' ? 144 : 110;
+      let height = 144;
       let top = 168 - height;
-      if (type === 'full-height-unit') {
-        height = cell;
-        top = 0;
-      } else if (type === 'attack-card') {
-        height = cell * image.naturalHeight / Math.max(image.naturalWidth, image.naturalHeight);
-        top = (cell - height) / 2;
+      let width = height * image.naturalWidth / image.naturalHeight;
+      if (layout?.contain) {
+        const scale = layout.cell / Math.max(image.naturalWidth, image.naturalHeight);
+        width = image.naturalWidth * scale;
+        height = image.naturalHeight * scale;
+        top = (layout.cell - height) / 2;
+      } else if (layout) {
+        height = layout.height;
+        width = height * image.naturalWidth / image.naturalHeight;
+        top = layout.baseline - height;
+      } else if (type !== 'hero') {
+        throw new Error('Missing unit card geometry');
       }
-      const width = height * image.naturalWidth / image.naturalHeight;
       ctx.drawImage(image, (cell - width) / 2, top, width, height);
     }
     return canvas.toDataURL();
@@ -187,26 +190,30 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
   const game = new Map();
   const units = new Map();
   let heroScenes = 0;
-  function record(registry, id, mission, frames) {
+  function record(registry, id, mission, frames, layout) {
     const kits = registry.get(id) ?? [];
     const same = kits.find(kit => kit.frames.every((image, index) => frames[index] === image)
-      && kit.frames.length === frames.length);
+      && kit.frames.length === frames.length && JSON.stringify(kit.layout) === JSON.stringify(layout));
     if (same) same.missions.push(mission);
-    else kits.push({ frames, missions: [mission] });
+    else kits.push({ frames, layout, missions: [mission] });
     registry.set(id, kits);
   }
   for (const mission of missions) {
     await openRelease(page, '?mission=' + encodeURIComponent(mission));
     await page.locator('#mission-loading-start').click({ timeout: 25_000 });
     const posts = await sceneReady(page);
-    const drawings = JSON.parse(await page.locator('#scene').getAttribute('data-unit-drawings'));
+    const { drawings, unitCards } = await page.locator('#scene').evaluate(scene => ({
+      drawings: JSON.parse(scene.dataset.unitDrawings), unitCards: JSON.parse(scene.dataset.unitCards),
+    }));
+    assert.deepEqual(Object.keys(unitCards), Object.keys(drawings), `Missing unit cards in ${mission}`);
     for (const [id, frames] of Object.entries(drawings)) {
-      if (separateAttackCards.has(id)) {
-        assert.equal(frames.length, 7, `Missing movement or attack drawings in ${mission}: ${id}`);
-        record(units, id, mission, frames.slice(0, 6));
-        record(units, id + '-attack', mission, frames.slice(6));
-      } else {
-        record(units, id, mission, frames);
+      const cards = unitCards[id];
+      assert.deepEqual(cards.flatMap(card => card.frames).sort((a, b) => a - b),
+        frames.map((_, index) => index), `Incomplete registry of battle frames in ${mission}: ${id}`);
+      for (const card of cards) {
+        assert(card.layout?.cell === cell || (!card.layout && card.id === 'sorceress'),
+          `Unexpected card geometry in ${mission}: ${card.id}`);
+        record(units, card.id, mission, card.frames.map(index => frames[index]), card.layout);
       }
     }
     async function recordPosts(entries) {
@@ -251,11 +258,10 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
   const compared = [];
   const catalogOnly = [];
   const catalogIds = new Set(catalog.map(card => card.id));
-  const battleOnly = [...game, ...units].filter(([id]) => !catalogIds.has(id === 'cyan' ? 'sorceress' : id))
+  const battleOnly = [...game, ...units].filter(([id]) => !catalogIds.has(id))
     .map(([id, variants]) => ({ id, missions: [...new Set(variants.flatMap(kit => kit.missions))] }));
   for (const { id, name } of catalog) {
-    const unit = id === 'sorceress' ? 'cyan' : id;
-    if (!game.has(id) && !units.has(unit)) {
+    if (!game.has(id) && !units.has(id)) {
       catalogOnly.push(name);
       continue;
     }
@@ -263,19 +269,15 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
     await card.click();
     await page.locator(frameList).first().waitFor({ timeout: 15_000 });
     try {
-      const variants = units.get(unit) ?? game.get(id);
-      for (const { frames, missions: locations } of variants) {
+      const variants = units.get(id) ?? game.get(id);
+      for (const { frames, layout, missions: locations } of variants) {
         assert(frames.length && frames.every(Boolean), 'Missing live drawings for ' + id);
-        if (unit === 'cyan') {
-          assert.equal(frames.length, 12, locations.join(', '));
+        if (id === 'sorceress') {
           await checkSorceress(frames);
         } else {
-          let expected = frames;
-          if (units.has(unit)) {
-            const type = unit.endsWith('-attack') ? 'attack-card'
-              : fullHeightUnitCards.has(unit) ? 'full-height-unit' : 'unit';
-            expected = await page.evaluate(renderFrames, { groups: frames.map(source => [{ source }]), cell, type });
-          }
+          const expected = layout
+            ? await page.evaluate(renderFrames, { groups: frames.map(source => [{ source }]), cell, layout })
+            : frames;
           assert.deepEqual(await compareThumbnails(page, expected), [], locations.join(', '));
         }
       }

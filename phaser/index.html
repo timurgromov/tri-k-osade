@@ -14,25 +14,28 @@
         ('production' === 'birch-editor' && !entryParams.has('play')) ||
         ('false' === 'true' && (entryParams.has('preview-birch') || entryParams.has('review')))) {
       document.documentElement.dataset.editorLoading = '';
+    } else {
+      document.documentElement.dataset.gameStartup = '';
     }
   </script>
-  <style>#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
-  <meta name="siege-source-revision" content="f0e1483ae19d10b8">
-  <script type="module" crossorigin src="./assets/index-FA4rXTA3.js"></script>
+  <style>#game-startup{display:none}[data-game-startup] main.siege{visibility:hidden}[data-game-startup] #game-startup{z-index:10001;color:#f4e9d2;background:#191a20;place-items:center;font:700 18px/1.5 Georgia,serif;display:grid;position:fixed;inset:0}.game-startup-dots{vertical-align:bottom;width:3ch;animation:1.2s steps(4,end) infinite game-startup-dots;display:inline-block;overflow:hidden}@keyframes game-startup-dots{0%{width:0}to{width:3ch}}#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
+  <meta name="siege-source-revision" content="018f3def56945112">
+  <script type="module" crossorigin src="./assets/index-DWk03gzb.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/garrison-roster-D-rQtH6Q.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="modulepreload" crossorigin href="./assets/preload-helper-DclECHGd.js">
   <link rel="modulepreload" crossorigin href="./assets/demon-defeat-frames-B6L-LUL9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-sheet-BbnJLMwC.js">
   <link rel="modulepreload" crossorigin href="./assets/published-montage-Cr_d2zZR.js">
-  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-DknzJJXk.js">
+  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-CZ5sLe2i.js">
   <link rel="modulepreload" crossorigin href="./assets/missions-DXlzrnsG.js">
-  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-DMyRlQd2.js">
+  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-v7cdWh5E.js">
   <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-Bgwlj6p8.js">
   <link rel="modulepreload" crossorigin href="./assets/sorceress-alignment-3GwgFGEA.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-CprOQDlG.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-ChVf4tVv.css">
 </head>
 <body>
+  <p id="game-startup" role="status"><span>Загрузка<span class="game-startup-dots" aria-hidden="true">...</span></span></p>
   <p id="editor-startup" role="status">Загрузка редактора…</p>
   <main class="siege" data-faction="humans">
     <div id="play-area" inert>
@@ -109,7 +112,7 @@
         <div id="mission-loading-pending" hidden>
           <p role="status">Загрузка осады…</p>
           <div id="mission-loading-progress" class="mission-loading-progress" role="progressbar"
-            aria-label="Готовность ресурсов осады" aria-valuemin="0" aria-valuemax="100"></div>
+            aria-label="Подготовка осады" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <button type="button" id="mission-loading-start" class="faction-button victory-button" hidden>Начать уровень</button>
         <p id="mission-loading-error" role="alert" hidden>Не удалось загрузить осаду.</p>

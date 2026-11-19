@@ -1,6 +1,8 @@
 const assert = require('node:assert/strict');
 
 const cell = 192;
+const separateAttackCards = new Set(['yellow', 'orc']);
+const fullHeightUnitCards = new Set(['elf', 'orc']);
 const frameList = '#animation-montage:not([hidden]) .montage-frames [data-frame] img';
 
 async function sceneReady(page, expectedPosts) {
@@ -8,8 +10,14 @@ async function sceneReady(page, expectedPosts) {
     const ready = await page.waitForFunction(expectedPosts => {
       const scene = document.querySelector('#scene');
       if (!scene || (!expectedPosts && !scene.dataset.unitDrawings) || document.querySelector('#play-area')?.inert) return false;
-      const posts = [...document.querySelectorAll('#fortress [data-defeat-figure]')].map((figure, index) => {
+      const fortress = document.querySelector('#fortress');
+      if (!fortress || [...fortress.querySelectorAll('[data-placed-garrison]')]
+        .some(post => !post.querySelector('[data-defeat-figure]'))) return false;
+
+      const posts = [...fortress.querySelectorAll('[data-defeat-figure]')].map((figure, index) => {
         const root = figure.parentElement;
+        // A published assignment hides its authored post at every stage.
+        if (root.classList.contains('garrison-replaced')) return null;
         const shown = root.checkVisibility({ opacityProperty: true, visibilityProperty: true });
         const poses = [...root.querySelectorAll('[data-idle-pose]')];
         return {
@@ -20,10 +28,10 @@ async function sceneReady(page, expectedPosts) {
           ready: Boolean(figure.style.backgroundImage && root.querySelector('[data-defeat-smoke]')?.style.backgroundImage &&
             poses.length && poses.every(pose => pose.naturalWidth > 0 && pose.getAnimations().length > 0)),
         };
-      });
+      }).filter(Boolean);
       const selected = expectedPosts
         ? expectedPosts.map(expected => {
-          const actual = posts[expected.index];
+          const actual = posts.find(post => post.index === expected.index);
           return actual?.id === expected.id && actual.hit === expected.hit ? actual : undefined;
         })
         : posts.filter(post => post.shown);
@@ -39,7 +47,7 @@ async function sceneReady(page, expectedPosts) {
 }
 
 // Take the textures already attached to the actual battle DOM, including aligned atlases.
-function readGarrison(indices) {
+function readGarrison(entries) {
   const c = 192;
   const matrix = (element, anchor, scale = 1) => {
     const [cols, rows] = element.style.backgroundSize.split(' ').map(value => parseFloat(value) / 100);
@@ -52,8 +60,12 @@ function readGarrison(indices) {
     }));
   };
   const figures = [...document.querySelectorAll('#fortress [data-defeat-figure]')];
-  return indices.map(index => {
+  return entries.map(({ index, id, hit }) => {
     const figure = figures[index];
+    if (figure?.dataset.defeatFigure !== id || Number(figure.dataset.texturePhase) !== hit ||
+      figure.parentElement.classList.contains('garrison-replaced')) {
+      throw new Error('Battle post changed before reading its frames: ' + id);
+    }
     const root = figure.parentElement;
     const poses = [...root.querySelectorAll('[data-idle-pose]')];
     const keyframes = poses.map(pose => pose.getAnimations().find(clip =>
@@ -102,11 +114,23 @@ async function renderFrames({ groups, cell, type }) {
     ctx.clearRect(0, 0, cell, cell);
     for (const { image, crop, dest, filter } of layers) {
       ctx.filter = filter || 'none';
-      const height = type === 'hero' ? 144 : 110;
+      if (dest) {
+        if (crop) ctx.drawImage(image, ...crop, ...dest);
+        else ctx.drawImage(image, ...dest);
+        continue;
+      }
+
+      let height = type === 'hero' ? 144 : 110;
+      let top = 168 - height;
+      if (type === 'full-height-unit') {
+        height = cell;
+        top = 0;
+      } else if (type === 'attack-card') {
+        height = cell * image.naturalHeight / Math.max(image.naturalWidth, image.naturalHeight);
+        top = (cell - height) / 2;
+      }
       const width = height * image.naturalWidth / image.naturalHeight;
-      const target = dest ?? [(cell - width) / 2, 168 - height, width, height];
-      if (crop) ctx.drawImage(image, ...crop, ...target);
-      else ctx.drawImage(image, ...target);
+      ctx.drawImage(image, (cell - width) / 2, top, width, height);
     }
     return canvas.toDataURL();
   }));
@@ -176,9 +200,17 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
     await page.locator('#mission-loading-start').click({ timeout: 25_000 });
     const posts = await sceneReady(page);
     const drawings = JSON.parse(await page.locator('#scene').getAttribute('data-unit-drawings'));
-    for (const [id, frames] of Object.entries(drawings)) record(units, id, mission, frames);
+    for (const [id, frames] of Object.entries(drawings)) {
+      if (separateAttackCards.has(id)) {
+        assert.equal(frames.length, 7, `Missing movement or attack drawings in ${mission}: ${id}`);
+        record(units, id, mission, frames.slice(0, 6));
+        record(units, id + '-attack', mission, frames.slice(6));
+      } else {
+        record(units, id, mission, frames);
+      }
+    }
     async function recordPosts(entries) {
-      const drawn = await page.evaluate(readGarrison, entries.map(post => post.index));
+      const drawn = await page.evaluate(readGarrison, entries);
       for (const { id, frames } of drawn) {
         const rendered = await page.evaluate(renderFrames, { groups: frames.map(frame => [frame]), cell });
         record(game, id, mission, rendered);
@@ -238,9 +270,12 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
           assert.equal(frames.length, 12, locations.join(', '));
           await checkSorceress(frames);
         } else {
-          const expected = units.has(unit)
-            ? await page.evaluate(renderFrames, { groups: frames.map(source => [{ source }]), cell, type: 'unit' })
-            : frames;
+          let expected = frames;
+          if (units.has(unit)) {
+            const type = unit.endsWith('-attack') ? 'attack-card'
+              : fullHeightUnitCards.has(unit) ? 'full-height-unit' : 'unit';
+            expected = await page.evaluate(renderFrames, { groups: frames.map(source => [{ source }]), cell, type });
+          }
           assert.deepEqual(await compareThumbnails(page, expected), [], locations.join(', '));
         }
       }

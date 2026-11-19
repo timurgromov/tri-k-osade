@@ -19,20 +19,20 @@
     }
   </script>
   <style>#game-startup{display:none}[data-game-startup] main.siege{visibility:hidden}[data-game-startup] #game-startup{z-index:10001;color:#f4e9d2;background:#191a20;place-items:center;font:700 18px/1.5 Georgia,serif;display:grid;position:fixed;inset:0}.game-startup-dots{vertical-align:bottom;width:3ch;animation:1.2s steps(4,end) infinite game-startup-dots;display:inline-block;overflow:hidden}@keyframes game-startup-dots{0%{width:0}to{width:3ch}}#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
-  <meta name="siege-source-revision" content="b27bb9536e254fce">
-  <script type="module" crossorigin src="./assets/index-DpmwFAkY.js"></script>
+  <meta name="siege-source-revision" content="3ebd1d5c816169d0">
+  <script type="module" crossorigin src="./assets/index-BuiZWqsx.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/garrison-roster-D-rQtH6Q.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="modulepreload" crossorigin href="./assets/preload-helper-DclECHGd.js">
   <link rel="modulepreload" crossorigin href="./assets/demon-defeat-frames-B6L-LUL9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-sheet-BbnJLMwC.js">
   <link rel="modulepreload" crossorigin href="./assets/published-montage-Cr_d2zZR.js">
-  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-iv9Lxejh.js">
+  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-Bxiv9bVm.js">
   <link rel="modulepreload" crossorigin href="./assets/missions-DXlzrnsG.js">
-  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-Ba_PHm3B.js">
+  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-0hj689Oe.js">
   <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-Bgwlj6p8.js">
   <link rel="modulepreload" crossorigin href="./assets/sorceress-alignment-3GwgFGEA.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-lSWGRV9Q.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-CSa75ufP.css">
 </head>
 <body>
   <p id="game-startup" role="status"><span>Загрузка<span class="game-startup-dots" aria-hidden="true">...</span></span></p>
@@ -63,13 +63,12 @@
           </button>
         </div>
         <p id="scout-status" class="sr-only" role="status"></p>
-        <dialog id="scout-dialog" aria-labelledby="scout-title">
+        <dialog id="scout-dialog" aria-labelledby="scout-title" aria-describedby="scout-message">
+          <form method="dialog"><button class="scout-close" type="submit" aria-label="Закрыть"><span aria-hidden="true">×</span></button></form>
+          <img class="scout-dialog-compass" src="data:image/webp;base64,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" width="44" height="44" alt="">
           <h2 id="scout-title">Подсказка</h2>
           <p id="scout-message" role="status"></p>
-          <div class="scout-actions">
-            <button id="scout-action" class="wood-button" type="button" autofocus>Смотреть видео</button>
-            <form method="dialog"><button class="scout-close" type="submit">Закрыть</button></form>
-          </div>
+          <button id="scout-action" class="faction-button command-button" type="button" autofocus>Смотреть видео</button>
         </dialog>
       </section>
       <section id="liberation" class="liberation" aria-label="Освобождение" hidden>

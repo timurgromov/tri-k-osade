@@ -19,20 +19,20 @@
     }
   </script>
   <style>#game-startup{display:none}[data-game-startup] main.siege{visibility:hidden}[data-game-startup] #game-startup{z-index:10001;color:#f4e9d2;background:#191a20;place-items:center;font:700 18px/1.5 Georgia,serif;display:grid;position:fixed;inset:0}.game-startup-dots{vertical-align:bottom;width:3ch;animation:1.2s steps(4,end) infinite game-startup-dots;display:inline-block;overflow:hidden}@keyframes game-startup-dots{0%{width:0}to{width:3ch}}#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
-  <meta name="siege-source-revision" content="b724f45be3db4c0d">
-  <script type="module" crossorigin src="./assets/index-DJOoSkX7.js"></script>
+  <meta name="siege-source-revision" content="b27bb9536e254fce">
+  <script type="module" crossorigin src="./assets/index-DpmwFAkY.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/garrison-roster-D-rQtH6Q.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="modulepreload" crossorigin href="./assets/preload-helper-DclECHGd.js">
   <link rel="modulepreload" crossorigin href="./assets/demon-defeat-frames-B6L-LUL9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-sheet-BbnJLMwC.js">
   <link rel="modulepreload" crossorigin href="./assets/published-montage-Cr_d2zZR.js">
-  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-BUFilj9U.js">
+  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-iv9Lxejh.js">
   <link rel="modulepreload" crossorigin href="./assets/missions-DXlzrnsG.js">
-  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-BPgmLH3r.js">
+  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-Ba_PHm3B.js">
   <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-Bgwlj6p8.js">
   <link rel="modulepreload" crossorigin href="./assets/sorceress-alignment-3GwgFGEA.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-R8ZqQ6xh.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-lSWGRV9Q.css">
 </head>
 <body>
   <p id="game-startup" role="status"><span>Загрузка<span class="game-startup-dots" aria-hidden="true">...</span></span></p>
@@ -117,7 +117,9 @@
           <div id="mission-loading-progress" class="mission-loading-progress" role="progressbar"
             aria-label="Подготовка осады" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-        <button type="button" id="mission-loading-start" class="faction-button victory-button" hidden>Начать уровень</button>
+        <button type="button" id="mission-loading-start" class="faction-button victory-button" hidden>
+          <span>Начать уровень</span>
+        </button>
         <p id="mission-loading-error" role="alert" hidden>Не удалось загрузить осаду.</p>
         <div id="mission-loading-actions" hidden>
           <button type="button" id="mission-loading-retry" class="faction-button command-button">Повторить</button>

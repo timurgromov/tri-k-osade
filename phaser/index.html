@@ -19,20 +19,20 @@
     }
   </script>
   <style>#game-startup{display:none}[data-game-startup] main.siege{visibility:hidden}[data-game-startup] #game-startup{z-index:10001;color:#f4e9d2;background:#191a20;place-items:center;font:700 18px/1.5 Georgia,serif;display:grid;position:fixed;inset:0}.game-startup-dots{vertical-align:bottom;width:3ch;animation:1.2s steps(4,end) infinite game-startup-dots;display:inline-block;overflow:hidden}@keyframes game-startup-dots{0%{width:0}to{width:3ch}}#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
-  <meta name="siege-source-revision" content="33d9b5fc9ddbcb99">
-  <script type="module" crossorigin src="./assets/index-B5lsDWKa.js"></script>
+  <meta name="siege-source-revision" content="8c191fa6d89f2e1b">
+  <script type="module" crossorigin src="./assets/index-BbY6D5Uf.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/garrison-roster-BH7Kz4Ws.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="modulepreload" crossorigin href="./assets/preload-helper-DclECHGd.js">
   <link rel="modulepreload" crossorigin href="./assets/demon-defeat-frames-B6L-LUL9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-sheet-CNna3_SI.js">
   <link rel="modulepreload" crossorigin href="./assets/published-montage-Crue_ZF6.js">
-  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-Chc6t-ue.js">
+  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-D2UfIr5J.js">
   <link rel="modulepreload" crossorigin href="./assets/missions-BLIdcAia.js">
-  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-VW8hg8th.js">
+  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-CrnGd7NP.js">
   <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-wolyRfns.js">
   <link rel="modulepreload" crossorigin href="./assets/sorceress-alignment-3GwgFGEA.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-DzP8nGaN.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-nEPcc7If.css">
 </head>
 <body>
   <p id="game-startup" role="status"><span>Загрузка<span class="game-startup-dots" aria-hidden="true">...</span></span></p>
@@ -162,7 +162,7 @@
         </div>
       </div>
     </section>
-    <dialog id="camp-dialogue" class="camp-dialogue" aria-label="Пограничный лагерь">
+    <dialog id="camp-dialogue" class="camp-dialogue story-dialogue-font" aria-label="Пограничный лагерь">
       <img class="camp-dialogue-background" alt="" />
       <div class="camp-dialogue-location" id="camp-dialogue-location" tabindex="-1" autofocus hidden>
         <h2>Пограничный лагерь</h2>
@@ -176,11 +176,11 @@
           <img class="camp-dialogue-actor" id="camp-dialogue-daughter" alt="" hidden />
         </div>
       </div>
-      <button type="button" id="camp-dialogue-skip">Пропустить сцену</button>
-      <div class="camp-dialogue-copy" hidden>
-        <div id="camp-dialogue-speaker" aria-hidden="true"></div>
-        <p id="camp-dialogue-text" aria-hidden="true"></p>
-        <button type="button" id="camp-dialogue-next">Далее</button>
+      <button type="button" id="camp-dialogue-skip" class="story-dialogue-skip">Пропустить сцену</button>
+      <div class="camp-dialogue-copy story-dialogue-copy" hidden>
+        <div id="camp-dialogue-speaker" class="story-dialogue-speaker" aria-hidden="true"></div>
+        <p id="camp-dialogue-text" class="story-dialogue-text" aria-hidden="true"></p>
+        <button type="button" id="camp-dialogue-next" class="story-dialogue-next">Далее</button>
       </div>
       <p id="camp-dialogue-announcement" class="sr-only" aria-live="polite"></p>
     </dialog>

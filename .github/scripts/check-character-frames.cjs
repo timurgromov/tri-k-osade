@@ -53,7 +53,7 @@ function readGarrison(entries) {
     if (!cols || !rows || !source) throw new Error('Cannot read the displayed garrison atlas');
     return Array.from({ length: cols * rows }, (_, index) => ({
       source, filter: element.style.filter,
-      crop: [index % cols * c, Math.floor(index / cols) * c, c, c],
+      tile: { column: index % cols, row: Math.floor(index / cols), columns: cols, rows },
       dest: [anchor[0] * (1 - scale), anchor[1] * (1 - scale), c * scale, c * scale],
     }));
   };
@@ -87,16 +87,19 @@ function readGarrison(entries) {
     });
     const smoke = root.querySelector('[data-defeat-smoke]');
     const smokeScale = Math.round(parseFloat(smoke.style.width) / parseFloat(figure.style.width) * 100) / 100;
-    return { id: figure.dataset.defeatFigure, frames: [
-      ...sequence, ...matrix(figure, anchor), ...matrix(smoke, anchor, smokeScale),
-    ] };
+    const frames = [...sequence, ...matrix(figure, anchor), ...matrix(smoke, anchor, smokeScale)];
+    const sources = [...new Set(frames.map(frame => frame.source))];
+    return { id: figure.dataset.defeatFigure, sources,
+      frames: frames.map(frame => ({ ...frame, source: sources.indexOf(frame.source) })),
+    };
   });
 }
 
 // Normalize the scene's drawing scale on the same transparent canvas used by the card.
-async function renderFrames({ groups, cell, type, layout }) {
+async function renderFrames({ groups, cell, type, layout, sources }) {
   const textures = new Map();
   async function load(source) {
+    if (sources) source = sources[source];
     if (!textures.has(source)) {
       const image = new Image();
       image.src = source;
@@ -110,11 +113,21 @@ async function renderFrames({ groups, cell, type, layout }) {
   return Promise.all(groups.map(async layers => Promise.all(layers.map(async layer =>
     ({ ...layer, image: await load(layer.source) }))))).then(frames => frames.map(layers => {
     ctx.clearRect(0, 0, cell, cell);
-    for (const { image, crop, dest, filter } of layers) {
+    for (const { image, tile, dest, filter } of layers) {
       ctx.filter = filter || 'none';
+      if (tile) {
+        const width = image.naturalWidth / tile.columns;
+        const height = image.naturalHeight / tile.rows;
+        if (!Number.isInteger(width) || !Number.isInteger(height) || width !== height) {
+          throw new Error('Invalid garrison atlas grid');
+        }
+        ctx.imageSmoothingEnabled = width <= cell;
+        ctx.drawImage(image, tile.column * width, tile.row * height, width, height, ...dest);
+        continue;
+      }
+      ctx.imageSmoothingEnabled = !dest || image.naturalWidth <= cell;
       if (dest) {
-        if (crop) ctx.drawImage(image, ...crop, ...dest);
-        else ctx.drawImage(image, ...dest);
+        ctx.drawImage(image, ...dest);
         continue;
       }
 
@@ -148,7 +161,8 @@ async function compareThumbnails(page, expected) {
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     function pixels(image) {
       ctx.clearRect(0, 0, c, c);
-      ctx.drawImage(image, 0, 0);
+      ctx.imageSmoothingEnabled = image.naturalWidth <= c;
+      ctx.drawImage(image, 0, 0, c, c);
       return ctx.getImageData(0, 0, c, c).data;
     }
     const disagreements = [];
@@ -217,9 +231,9 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
       }
     }
     async function recordPosts(entries) {
-      const drawn = await page.evaluate(readGarrison, entries);
-      for (const { id, frames } of drawn) {
-        const rendered = await page.evaluate(renderFrames, { groups: frames.map(frame => [frame]), cell });
+      for (const entry of entries) {
+        const [{ id, frames, sources }] = await page.evaluate(readGarrison, [entry]);
+        const rendered = await page.evaluate(renderFrames, { groups: frames.map(frame => [frame]), cell, sources });
         record(game, id, mission, rendered);
       }
     }

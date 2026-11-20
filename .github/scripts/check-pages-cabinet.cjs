@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { readFileSync } = require('node:fs');
+const { readFileSync, readdirSync } = require('node:fs');
 const { basename, join } = require('node:path');
 const { setTimeout: delay } = require('node:timers/promises');
 const { chromium } = require('playwright');
@@ -11,6 +11,12 @@ const revision = release.match(/<meta name="siege-source-revision" content="([a-
 const entry = release.match(/<script type="module"[^>]* src="(\.\/assets\/index-[\w-]+\.js)"/)?.[1];
 assert(revision && entry, 'Missing build identity in phaser/index.html');
 const expectedEntry = new URL(entry, base).href;
+const placements = join('phaser', 'placements');
+const hdIds = readdirSync(placements).filter(file => file.endsWith('-montage.json')).filter(file => {
+  const montage = JSON.parse(readFileSync(join(placements, file), 'utf8'));
+  return montage?.frames?.some(frame => frame.phase === 'pose' && frame.imageHd);
+}).map(file => file.replace(/-montage\.json$/, ''));
+
 
 async function openRelease(page, route) {
   const url = new URL(route, base).href;
@@ -105,7 +111,7 @@ async function verify() {
       assert((await atlas.body()).equals(readFileSync(join('phaser/assets', basename(atlasUrl)))),
         'The Sorceress atlas served by Pages differs from the checked-out release');
       await compareSorceressFrames(page, frames);
-    });
+    }, hdIds);
     await checkLinks(page);
     assert.deepEqual(errors, [], 'Browser errors');
   } finally {

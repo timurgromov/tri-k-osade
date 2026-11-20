@@ -3,9 +3,9 @@ const assert = require('node:assert/strict');
 const cell = 192;
 const frameList = '#animation-montage:not([hidden]) .montage-frames [data-frame] img';
 
-async function sceneReady(page, expectedPosts) {
+async function sceneReady(page, expectedPosts, hdIds) {
   try {
-    const ready = await page.waitForFunction(expectedPosts => {
+    const ready = await page.waitForFunction(({ expectedPosts, hdIds }) => {
       const scene = document.querySelector('#scene');
       if (!scene || (!expectedPosts && (!scene.dataset.unitDrawings || !scene.dataset.unitCards)) || document.querySelector('#play-area')?.inert) return false;
       const fortress = document.querySelector('#fortress');
@@ -24,7 +24,8 @@ async function sceneReady(page, expectedPosts) {
           hit: Number(figure.dataset.texturePhase),
           shown,
           ready: Boolean(figure.style.backgroundImage && root.querySelector('[data-defeat-smoke]')?.style.backgroundImage &&
-            poses.length && poses.every(pose => pose.naturalWidth > 0 && pose.getAnimations().length > 0)),
+            poses.length && poses.every(pose => pose.naturalWidth > 0 && pose.getAnimations().length > 0) &&
+            (!hdIds.includes(figure.dataset.defeatFigure) || poses.some(pose => pose.naturalWidth >= 768))),
         };
       }).filter(Boolean);
       const selected = expectedPosts
@@ -34,7 +35,7 @@ async function sceneReady(page, expectedPosts) {
         })
         : posts.filter(post => post.shown);
       return selected.every(post => post?.shown && post.ready) ? posts : false;
-    }, expectedPosts ?? null, { timeout: 25_000 });
+    }, { expectedPosts: expectedPosts ?? null, hdIds }, { timeout: 25_000 });
     try { return await ready.jsonValue(); }
     finally { await ready.dispose(); }
   } catch (error) {
@@ -203,7 +204,7 @@ async function compareThumbnails(page, expected) {
   }, expected);
 }
 
-async function checkCharacterFrames(page, openRelease, checkSorceress) {
+async function checkCharacterFrames(page, openRelease, checkSorceress, hdIds = []) {
   await openRelease(page, '?editor&catalog&tab=environment');
   const gates = page.locator('.catalog-gate-stage[data-mission]');
   await gates.first().waitFor();
@@ -222,7 +223,7 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
   for (const mission of missions) {
     await openRelease(page, '?mission=' + encodeURIComponent(mission));
     await page.locator('#mission-loading-start').click({ timeout: 25_000 });
-    const posts = await sceneReady(page);
+    const posts = await sceneReady(page, undefined, hdIds);
     const { drawings, unitCards } = await page.locator('#scene').evaluate(scene => ({
       drawings: JSON.parse(scene.dataset.unitDrawings), unitCards: JSON.parse(scene.dataset.unitCards),
     }));
@@ -239,7 +240,18 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
     }
     async function recordPosts(entries) {
       for (const entry of entries) {
-        const [{ id, frames, sources }] = await page.evaluate(readGarrison, [entry]);
+        let garrison;
+        for (let attempt = 0; attempt < 3; attempt++) {
+          try {
+            [garrison] = await page.evaluate(readGarrison, [entry]);
+            break;
+          } catch (error) {
+            if (attempt === 2 || !/Cannot read the displayed garrison atlas|Battle post changed before reading its frames/.test(error.message)) throw error;
+            // A prepared replacement can be mounted between readiness and capture.
+            await sceneReady(page, [entry], hdIds);
+          }
+        }
+        const { id, frames, sources } = garrison;
         const rendered = await page.evaluate(renderFrames, { groups: frames.map(frame => [frame]), cell, sources });
         record(game, id, mission, rendered);
       }
@@ -262,7 +274,7 @@ async function checkCharacterFrames(page, openRelease, checkSorceress) {
     for (const [hit, entries] of laterPosts) {
       assert(Number.isInteger(hit) && hit > 1, `Unexpected hidden opening post in ${mission}: ${entries[0].id}`);
       await openRelease(page, `?editor&review=animation&mission=${encodeURIComponent(mission)}&scene=field&field=${hit}`);
-      await sceneReady(page, entries);
+      await sceneReady(page, entries, hdIds);
       await recordPosts(entries);
       console.log(`${mission} · wave ${hit} · ${entries.map(post => post.id).join(', ')}`);
     }

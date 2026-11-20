@@ -110,8 +110,13 @@ async function renderFrames({ groups, cell, type, layout, sources }) {
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = cell;
   const ctx = canvas.getContext('2d');
-  return Promise.all(groups.map(async layers => Promise.all(layers.map(async layer =>
-    ({ ...layer, image: await load(layer.source) }))))).then(frames => frames.map(layers => {
+  const frames = await Promise.all(groups.map(async layers => Promise.all(layers.map(async layer =>
+    ({ ...layer, image: await load(layer.source) })))));
+  // Sample HD montages on the same pixel grid as their card. Keep the existing
+  // interpolation for stock poses, which can be drawn from larger source sprites.
+  const hd = frames.some(layers => layers.some(({ image, tile }) =>
+    tile && image.naturalWidth / tile.columns > cell));
+  return frames.map(layers => {
     ctx.clearRect(0, 0, cell, cell);
     for (const { image, tile, dest, filter } of layers) {
       ctx.filter = filter || 'none';
@@ -121,11 +126,11 @@ async function renderFrames({ groups, cell, type, layout, sources }) {
         if (!Number.isInteger(width) || !Number.isInteger(height) || width !== height) {
           throw new Error('Invalid garrison atlas grid');
         }
-        ctx.imageSmoothingEnabled = width <= cell;
+        ctx.imageSmoothingEnabled = !hd || width <= cell;
         ctx.drawImage(image, tile.column * width, tile.row * height, width, height, ...dest);
         continue;
       }
-      ctx.imageSmoothingEnabled = !dest || image.naturalWidth <= cell;
+      ctx.imageSmoothingEnabled = !hd || image.naturalWidth <= cell;
       if (dest) {
         ctx.drawImage(image, ...dest);
         continue;
@@ -149,7 +154,7 @@ async function renderFrames({ groups, cell, type, layout, sources }) {
       ctx.drawImage(image, (cell - width) / 2, top, width, height);
     }
     return canvas.toDataURL();
-  }));
+  });
 }
 
 async function compareThumbnails(page, expected) {
@@ -161,8 +166,10 @@ async function compareThumbnails(page, expected) {
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     function pixels(image) {
       ctx.clearRect(0, 0, c, c);
-      ctx.imageSmoothingEnabled = image.naturalWidth <= c;
-      ctx.drawImage(image, 0, 0, c, c);
+      const hd = image.naturalWidth > c;
+      ctx.imageSmoothingEnabled = !hd;
+      if (hd) ctx.drawImage(image, 0, 0, c, c);
+      else ctx.drawImage(image, 0, 0);
       return ctx.getImageData(0, 0, c, c).data;
     }
     const disagreements = [];

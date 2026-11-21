@@ -1,0 +1,1 @@
+var e=new URL(`ruslan-mighty-full-DMiA_388.webp`,import.meta.url).href;export{e as default};

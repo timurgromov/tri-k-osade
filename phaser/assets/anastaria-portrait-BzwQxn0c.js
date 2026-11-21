@@ -1,0 +1,1 @@
+var e=new URL(`anastaria-portrait-BYM7H6xv.webp`,import.meta.url).href;export{e as default};

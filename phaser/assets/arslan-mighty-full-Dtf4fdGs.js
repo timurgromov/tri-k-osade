@@ -1,0 +1,1 @@
+var e=new URL(`arslan-mighty-full-DMiA_388.webp`,import.meta.url).href;export{e as default};

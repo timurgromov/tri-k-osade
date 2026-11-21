@@ -1,0 +1,1 @@
+var e=new URL(`arslan-mighty-portrait-D-XvgUte.webp`,import.meta.url).href;export{e as default};

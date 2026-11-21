@@ -1,0 +1,1 @@
+var e=new URL(`danduil-beardless-portrait-7mJr4CxC.webp`,import.meta.url).href;export{e as default};

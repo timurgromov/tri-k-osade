@@ -1,0 +1,1 @@
+var e=new URL(`yudante-full-v2-D7PVUgrC.webp`,import.meta.url).href;export{e as default};

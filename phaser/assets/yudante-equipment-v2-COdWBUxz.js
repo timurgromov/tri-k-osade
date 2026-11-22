@@ -1,0 +1,1 @@
+var e=new URL(`yudante-equipment-v2-DmrI7uFU.webp`,import.meta.url).href;export{e as default};

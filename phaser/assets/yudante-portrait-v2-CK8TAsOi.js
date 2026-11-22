@@ -1,0 +1,1 @@
+var e=new URL(`yudante-portrait-v2-Bx962PE8.webp`,import.meta.url).href;export{e as default};

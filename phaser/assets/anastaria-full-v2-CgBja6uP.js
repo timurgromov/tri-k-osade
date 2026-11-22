@@ -1,0 +1,1 @@
+var e=new URL(`anastaria-full-v2-DurdqOpS.webp`,import.meta.url).href;export{e as default};

@@ -1,0 +1,1 @@
+var e=new URL(`irida-full-mxvObuPb.webp`,import.meta.url).href;export{e as default};

@@ -1,0 +1,1 @@
+var e=new URL(`irida-portrait-r9E1t5xF.webp`,import.meta.url).href;export{e as default};

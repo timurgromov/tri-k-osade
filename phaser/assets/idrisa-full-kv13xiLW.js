@@ -1,0 +1,1 @@
+var e=new URL(`idrisa-full-98iBr_RK.webp`,import.meta.url).href;export{e as default};

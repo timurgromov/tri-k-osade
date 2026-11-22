@@ -1,0 +1,1 @@
+var e=new URL(`yudante-passport-C0PQ_0mn.webp`,import.meta.url).href;export{e as default};

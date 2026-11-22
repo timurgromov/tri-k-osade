@@ -1,0 +1,1 @@
+var e=new URL(`irida-passport-CVya3s9h.webp`,import.meta.url).href;export{e as default};

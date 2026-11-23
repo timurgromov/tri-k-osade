@@ -19,20 +19,21 @@
     }
   </script>
   <style>#game-startup{display:none}[data-game-startup] main.siege{visibility:hidden}[data-game-startup] #game-startup{z-index:10001;color:#f4e9d2;background:#191a20;place-items:center;font:700 18px/1.5 Georgia,serif;display:grid;position:fixed;inset:0}.game-startup-dots{vertical-align:bottom;width:3ch;animation:1.2s steps(4,end) infinite game-startup-dots;display:inline-block;overflow:hidden}@keyframes game-startup-dots{0%{width:0}to{width:3ch}}#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
-  <meta name="siege-source-revision" content="bbb400ec19a523e4">
-  <script type="module" crossorigin src="./assets/index-iBcJ6hb4.js"></script>
+  <meta name="siege-source-revision" content="17099e62c2d9b157">
+  <script type="module" crossorigin src="./assets/index-BoAI6jMF.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/garrison-roster-BH7Kz4Ws.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="modulepreload" crossorigin href="./assets/preload-helper-DclECHGd.js">
   <link rel="modulepreload" crossorigin href="./assets/demon-defeat-frames-B6L-LUL9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-sheet-CNna3_SI.js">
   <link rel="modulepreload" crossorigin href="./assets/published-montage-Crue_ZF6.js">
-  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-67aurnGy.js">
-  <link rel="modulepreload" crossorigin href="./assets/missions-Byve4MOw.js">
-  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-CvXHYF8c.js">
-  <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-wolyRfns.js">
+  <link rel="modulepreload" crossorigin href="./assets/catalog-montage-reader-DD1ljGmO.js">
+  <link rel="modulepreload" crossorigin href="./assets/missions-WY3QdpUq.js">
+  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-DuO7vusH.js">
+  <link rel="modulepreload" crossorigin href="./assets/unit-info-B0-Rf6Se.js">
+  <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-CrbG-6mD.js">
   <link rel="modulepreload" crossorigin href="./assets/sorceress-alignment-3GwgFGEA.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-CW8Cy8Ct.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-JszIKX_s.css">
 </head>
 <body>
   <p id="game-startup" role="status"><span>Загрузка<span class="game-startup-dots" aria-hidden="true">...</span></span></p>
@@ -82,7 +83,7 @@
         <img data-graven-shot="celebration" alt="Горожане встречают героев на столичной площади" />
         <img data-graven-shot="awards" alt="Королева Ирида показывает Юданте награду" />
         <div id="graven-ribbons" class="victory-ribbons" aria-hidden="true"></div>
-        <button id="graven-ending-continue" type="button" class="faction-button victory-button" hidden><span>Перейти к финальной сцене</span></button>
+        <button id="graven-ending-continue" type="button" class="faction-button victory-button" hidden><span>К финальной сцене</span></button>
         <div class="graven-ending-speech" aria-live="polite" hidden>
           <p class="graven-ending-speaker"></p>
           <p class="graven-ending-line"></p>
@@ -185,6 +186,7 @@
         <h2>Пограничный лагерь</h2>
         <p>У дороги на Тихолесье</p>
         <p id="camp-dialogue-loading" role="status" hidden>Загрузка сцены…</p>
+        <button type="button" id="camp-dialogue-start" class="faction-button victory-button" hidden><span>Начать</span></button>
         <div id="camp-dialogue-load-error" hidden>
           <p role="alert">Не удалось загрузить сцену.</p>
           <button type="button" id="camp-dialogue-retry" class="story-dialogue-next">Повторить</button>

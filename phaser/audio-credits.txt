@@ -2,3 +2,52 @@
 Источник: https://freesound.org/people/qubodup/sounds/738437/
 Лицензия: Creative Commons Attribution 4.0 International, https://creativecommons.org/licenses/by/4.0/
 Изменения: использован открытый HQ MP3-превью, преобразован в моно PCM WAV, 22050 Гц, без обрезки.
+
+Музыка боёв и награждения — проверка источников 23 ноября 2026
+Все перечисленные записи опубликованы авторами под Pixabay Content License.
+https://pixabay.com/service/license-summary/
+Использование и монтаж в составе игры допускаются. Отдельное распространение исходников запрещено.
+Обработка — двухпроходная нормализация к −24 LUFS / −2 dBTP, стерео MP3 128 кбит/с, 44,1 кГц.
+
+Slavic Epic Loop — Ebunny
+https://pixabay.com/music/main-title-slavic-epic-loop-368859/
+Файл — slavic-epic.mp3
+
+Slavic Forest Horror — Ritual Drums, Eerie Flutes & Drones — SoundsByAmelia
+https://pixabay.com/music/adventure-slavic-forest-horror-ritual-drums-eerie-flutes-amp-drones-422976/
+Файл — slavic-forest.mp3
+
+Slavic War Dance — Drums, Stomps & War Pipes — SoundsByAmelia
+https://pixabay.com/music/folk-slavic-war-dance-drums-stomps-amp-war-pipes-422949/
+Файл — war-dance.mp3
+
+Spaekona — Viking Background Music — OB-LIX
+https://pixabay.com/music/main-title-spaekona-viking-background-music-109374/
+Файл — spaekona.mp3
+
+Beata — Dark Pagan / Norse Background Music — OB-LIX
+https://pixabay.com/music/build-up-scenes-beata-dark-pagan-norse-background-music-129817/
+Файл — beata.mp3
+
+Blackwood Outpost — ONECinematicStudio
+https://pixabay.com/music/orchestral-blackwood-outpost-dark-folk-amp-medieval-tension-cinematic-music-529093/
+Файл — blackwood.mp3
+
+Gothic Sacred Epic — Male Chant, Female Choir & Bells — SoundsByAmelia
+https://pixabay.com/music/adventure-gothic-sacred-epic-male-chant-female-choir-amp-bells-422978/
+Файл — gothic-sacred.mp3
+
+Heilir æsir — Norse / Viking Background Music — OB-LIX
+https://pixabay.com/music/build-up-scenes-heilir-%C3%A6sir-norse-viking-background-music-114582/
+Файл — heilir.mp3
+
+Khutulun — Fantasy & Battle Background Music — OB-LIX
+https://pixabay.com/music/main-title-khutulun-fantasy-amp-battle-background-music-115812/
+Файл — khutulun.mp3
+
+Award Ceremony — The_Mountain
+https://pixabay.com/music/adventure-award-ceremony-131399/
+Файл — royal-triumph.mp3
+
+Награждение Гравена — graven-ceremony.mp3, Award Ceremony, фрагмент 84–110,8 с, плавное начало 0,8 с и затухание 2 с.
+Content ID отмечен у Slavic Epic Loop, Blackwood Outpost и Award Ceremony.

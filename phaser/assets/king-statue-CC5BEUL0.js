@@ -1,0 +1,1 @@
+var e=new URL(`king-statue-Y8n8bvSj.webp`,import.meta.url).href;export{e as default};

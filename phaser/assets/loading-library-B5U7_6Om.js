@@ -1,0 +1,4 @@
+/* empty css                          */import{ht as e}from"./index-Bm_1oO5i.js";import{n as t,t as n}from"./missions-Dkwmp6Cr.js";function r(r){document.title=`Заставки · Редактор Эльнарии`,r.innerHTML=`
+    <header class="character-library-header"><h1>Заставки</h1></header>
+    <div class="character-library-grid loading-library-grid"></div>
+  `;let i=r.querySelector(`.loading-library-grid`);for(let r of n){let n=e(r.id),a=document.createElement(n?`a`:`div`);a.className=`character-library-card`;let o=document.createElement(`strong`);if(o.className=`loading-library-caption`,o.textContent=t(r),a.append(o),n&&a instanceof HTMLAnchorElement){a.href=n,n.startsWith(`data:`)&&(a.download=`${r.fortress}-loading.webp`);let e=new Image;e.alt=``,e.loading=`lazy`,e.src=n,a.append(e)}else{let e=document.createElement(`p`);e.textContent=`Заставка не назначена`,a.append(e)}i.append(a)}}export{r as mountLoadingLibrary};

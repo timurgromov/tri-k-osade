@@ -19,21 +19,21 @@
     }
   </script>
   <style>#game-startup{display:none}[data-game-startup] main.siege{visibility:hidden}[data-game-startup] #game-startup{z-index:10001;color:#f4e9d2;background:#191a20;place-items:center;font:700 18px/1.5 Georgia,serif;display:grid;position:fixed;inset:0}.game-startup-dots{vertical-align:bottom;width:3ch;animation:1.2s steps(4,end) infinite game-startup-dots;display:inline-block;overflow:hidden}@keyframes game-startup-dots{0%{width:0}to{width:3ch}}#editor-startup,[data-editor-loading] #intro{display:none}[data-editor-loading] #editor-startup{z-index:10000;color:#f4e9d2;text-align:center;background:#202d1d;place-items:center;margin:0;padding:16px;font:600 16px/1.5 system-ui,sans-serif;display:grid;position:fixed;inset:0}</style>
-  <meta name="siege-source-revision" content="d9666ad14ca3afbd">
-  <script type="module" crossorigin src="./assets/index-C6YXky0G.js"></script>
+  <meta name="siege-source-revision" content="971a633d130c0565">
+  <script type="module" crossorigin src="./assets/index-CcNR4Qr3.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/preload-helper-DclECHGd.js">
   <link rel="modulepreload" crossorigin href="./assets/demon-defeat-frames-B6L-LUL9.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-roster-Bm7kYaB7.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-alignment-kswElW-o.js">
   <link rel="modulepreload" crossorigin href="./assets/garrison-sheet--I2rK8be.js">
-  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-ChvSfDQy.js">
+  <link rel="modulepreload" crossorigin href="./assets/garrison-defeat-DcWd86T0.js">
   <link rel="modulepreload" crossorigin href="./assets/montage-frames-DDF415n0.js">
   <link rel="modulepreload" crossorigin href="./assets/missions-Dkwmp6Cr.js">
   <link rel="modulepreload" crossorigin href="./assets/published-montage-e7aytn60.js">
   <link rel="modulepreload" crossorigin href="./assets/unit-info-mCtCKuWV.js">
   <link rel="modulepreload" crossorigin href="./assets/siege-loading-crossing-CrbG-6mD.js">
   <link rel="modulepreload" crossorigin href="./assets/sorceress-alignment-3GwgFGEA.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-BWrKiJTt.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-DcGCUGB4.css">
 </head>
 <body>
   <p id="game-startup" role="status"><span>Загрузка<span class="game-startup-dots" aria-hidden="true">...</span></span></p>
@@ -87,6 +87,7 @@
         <img data-graven-shot="moon" alt="Арслан и Анастария смотрят на луну с дворцовой террасы" />
         <img data-graven-shot="royal-square" alt="Каменная статуя короля на Королевской площади" />
         <div id="graven-ribbons" class="victory-ribbons" aria-hidden="true"></div>
+        <div id="graven-score" class="graven-score" hidden></div>
         <button id="graven-ending-continue" type="button" class="faction-button victory-button" hidden><span>К финальной сцене</span></button>
         <div class="story-dialogue-copy story-dialogue-font" hidden>
           <div class="story-dialogue-speaker"></div>
@@ -129,6 +130,7 @@
           <div class="victory-copy">
             <h2 id="victory-title"></h2>
             <span id="result"></span>
+            <span id="victory-stars" class="score-stars"></span>
             <button type="button" id="advance" class="faction-button victory-button">Следующая миссия</button>
             <button type="button" id="victory-map" class="faction-button victory-map-button">К карте</button>
           </div>
